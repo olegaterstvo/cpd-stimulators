@@ -1,0 +1,8 @@
+{
+  "apply_injector": {
+    "subtitle": "sounds.cpd_stimulators.apply_injector",
+    "sounds": [
+      "cpd_stimulators:apply_injector"
+    ]
+  }
+}

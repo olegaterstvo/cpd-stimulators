@@ -1,0 +1,13 @@
+{
+  "item.cpd_stimulators.propital": "Propital",
+  "item.cpd_stimulators.etgc": "eTG-C",
+  "item.cpd_stimulators.pnb": "PNB (Product 16)",
+  "item.cpd_stimulators.meldonin": "Meldonin",
+
+  "effect.cpd_stimulators.exhaustion": "Exhaustion",
+  "effect.cpd_stimulators.vulnerability": "Vulnerability",
+
+  "sounds.cpd_stimulators.apply_injector": "Applying stimulator",
+
+  "itemGroup.cpd_stimulators": "CPD: Stimulators"
+}
