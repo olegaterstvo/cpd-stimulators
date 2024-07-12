@@ -7,6 +7,7 @@
   "item.cpd_stimulators.btg2a2": "2A2-(b-TG)",
   "item.cpd_stimulators.btg3": "3-(b-TG)",
   "item.cpd_stimulators.l1": "L1 (Norepinephrine)",
+  "item.cpd_stimulators.meldonin": "Meldonin",
   "item.cpd_stimulators.mule": "Mule",
   "item.cpd_stimulators.obdolbos": "\"Obdolbos\" Cocktail",
   "item.cpd_stimulators.obdolbos2": "\"Obdolbos 2\" Cocktail",
@@ -32,6 +33,9 @@
   "misc.cpd_stimulators.weight": "Weight",
   "misc.cpd_stimulators.owner": "Owner",
   "misc.cpd_stimulators.cu": "c.u.",
+  "misc.cpd_stimulators.duration": "s Duration: ",
+  "misc.cpd_stimulators.delay": "s Delay; ",
+  "misc.cpd_stimulators.press_shift": "§o§9Shift§r§7 for more information",
 
   "itemGroup.cpd_stimulators": "CPD: Stimulators"
 }
