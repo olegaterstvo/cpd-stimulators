@@ -33,6 +33,9 @@
   "misc.cpd_stimulators.weight": "Weight",
   "misc.cpd_stimulators.owner": "Owner",
   "misc.cpd_stimulators.cu": "c.u.",
+  "misc.cpd_stimulators.duration": "s Duration: ",
+  "misc.cpd_stimulators.delay": "s Delay; ",
+  "misc.cpd_stimulators.press_shift": "§o§9Shift§r§7 for more information",
 
   "itemGroup.cpd_stimulators": "CPD: Stimulators"
 }

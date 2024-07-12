@@ -3,7 +3,7 @@ package net.chronos.cpd_stimulators.item.custom;
 import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.sound.ModSounds;
-import net.minecraft.commands.arguments.ComponentArgument;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -48,8 +48,8 @@ public class Adrenaline extends Item {
     private void addEffects(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 0));
         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 1200, 0));
-        player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 300, 2));
         player.addEffect(new MobEffectInstance(ModEffects.STRESS_RESISTANCE.getDelegate(), 1200, 0));
+        player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 300, 2));
     }
     private void addSideEffects(Player player) {
         ModPlayerEvent.queueWork(1000, () -> {
@@ -60,10 +60,26 @@ public class Adrenaline extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.literal(""+Component.translatable("effect.minecraft.speed").getString()+" "));
-
-
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        if (!Screen.hasShiftDown()){
+            tooltipComponents.add(Component.translatable("misc.cpd_stimulators.press_shift"));
+            return;
+        }
+        tooltipComponents.add(Component.literal("§o§7"+"60" + Component.translatable("misc.cpd_stimulators.duration").getString()));
+        tooltipComponents.add(Component.literal("   §b"+Component.translatable("effect.minecraft.speed").getString()+" "));
+        tooltipComponents.add(Component.literal("   §b"+Component.translatable("effect.minecraft.strength").getString()+" "));
+        tooltipComponents.add(Component.literal("   §b"+Component.translatable("effect.cpd_stimulators.stress_resistance").getString()+" "));
+
+        tooltipComponents.add(Component.literal("§o§7"+"15" + Component.translatable("misc.cpd_stimulators.duration").getString()));
+        tooltipComponents.add(Component.literal("   §b"+Component.translatable("effect.minecraft.regeneration").getString()+" III"));
+
+        tooltipComponents.add(Component.literal("§o§7"+"1" + Component.translatable("misc.cpd_stimulators.delay").getString()
+                + "60" + Component.translatable("misc.cpd_stimulators.duration").getString()));
+        tooltipComponents.add(Component.literal("   §c"+Component.translatable("effect.cpd_stimulators.vulnerability").getString()+" "));
+
+        tooltipComponents.add(Component.literal("§o§7"+"50" + Component.translatable("misc.cpd_stimulators.delay").getString()
+                + "30" + Component.translatable("misc.cpd_stimulators.duration").getString()));
+        tooltipComponents.add(Component.literal("   §c"+Component.translatable("effect.minecraft.hunger").getString()+" "));
     }
 
     @Override
