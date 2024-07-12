@@ -14,7 +14,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 @EventBusSubscriber(modid = CPDStimulators.MOD_ID)
 public class ModPlayerEvent {
-
     private static final Collection<AbstractMap.SimpleEntry<Runnable, Integer>> workQueue = new ConcurrentLinkedQueue<>();
     public static void queueWork(int tick, Runnable action) {
         workQueue.add(new AbstractMap.SimpleEntry<>(action, tick));
@@ -32,10 +31,9 @@ public class ModPlayerEvent {
         });
         actions.forEach(e -> e.getKey().run());
     }
+
     @SubscribeEvent
     public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
         workQueue.clear();
     }
-
-
 }

@@ -49,22 +49,18 @@ public class Exhaustion extends MobEffect {
 
     @Override
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
-        if (duration == 1){
-            return true;
-        }
+        if (duration == 1) return true;
         return false;
     }
 
     @SubscribeEvent
     public static void effectEvent(MobEffectEvent.Remove event){
-        if (event.getEffectInstance().is(ModEffects.EXHAUSTION)){
-            if ( event.getEntity().getAttribute(Attributes.MAX_HEALTH).hasModifier(ResourceLocation.fromNamespaceAndPath("cpd_stimulators", "exhaustion")) ) {
-                modifier = event.getEntity().getAttribute(Attributes.MAX_HEALTH).getModifier(ResourceLocation.fromNamespaceAndPath("cpd_stimulators", "exhaustion"));
+        if (!event.getEffect().is(ModEffects.EXHAUSTION.getDelegate())) return;
 
+        if (event.getEntity().getAttribute(Attributes.MAX_HEALTH).hasModifier(ResourceLocation.fromNamespaceAndPath("cpd_stimulators", "exhaustion")) ) {
+            modifier = event.getEntity().getAttribute(Attributes.MAX_HEALTH).getModifier(ResourceLocation.fromNamespaceAndPath("cpd_stimulators", "exhaustion"));
 
-                event.getEntity().getAttribute(Attributes.MAX_HEALTH).removeModifier(modifier);
-            }
+            event.getEntity().getAttribute(Attributes.MAX_HEALTH).removeModifier(modifier);
         }
     }
-
 }

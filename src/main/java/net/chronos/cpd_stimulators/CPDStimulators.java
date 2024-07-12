@@ -21,7 +21,6 @@ public class CPDStimulators {
         ModItems.register(eventBus);
         ModEffects.register(eventBus);
         ModSounds.register(eventBus);
-
     }
 
 
