@@ -21,15 +21,7 @@ public class CPDStimulators {
         ModItems.register(eventBus);
         ModEffects.register(eventBus);
         ModSounds.register(eventBus);
-
     }
-
-
-
-
-
-
-
 
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
 //    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);

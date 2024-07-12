@@ -23,7 +23,15 @@
   "effect.cpd_stimulators.stress_resistance": "Stress Resistance",
   "effect.cpd_stimulators.antidote": "Antidote",
 
+  "effect.cpd_stimulators.insuperability": "Insuperability",
+  "effect.cpd_stimulators.overload": "Overload",
+  "effect.cpd_stimulators.photopsia": "Photopsia",
+
   "sounds.cpd_stimulators.apply_injector": "Applying stimulator",
+
+  "misc.cpd_stimulators.weight": "Weight",
+  "misc.cpd_stimulators.owner": "Owner",
+  "misc.cpd_stimulators.cu": "c.u.",
 
   "itemGroup.cpd_stimulators": "CPD: Stimulators"
 }

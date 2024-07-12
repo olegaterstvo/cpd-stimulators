@@ -23,6 +23,13 @@ public class ModEffects {
     public static final DeferredHolder<MobEffect, MobEffect> ANTIDOTE = MOB_EFFECTS.register("antidote",
             () -> new Antidote(MobEffectCategory.BENEFICIAL, 0x96f605));
 
+    public static final DeferredHolder<MobEffect, MobEffect> INSUPERABILITY = MOB_EFFECTS.register("insuperability",
+            () -> new Insuperability(MobEffectCategory.HARMFUL, 0x000000));
+    public static final DeferredHolder<MobEffect, MobEffect> OVERLOAD = MOB_EFFECTS.register("overload",
+            () -> new Overload(MobEffectCategory.HARMFUL, 0x6374CE)); // TODO: change color
+    public static final DeferredHolder<MobEffect, MobEffect> PHOTOPSIA = MOB_EFFECTS.register("photopsia",
+            () -> new Photopsia(MobEffectCategory.HARMFUL, 0x6374CE)); // TODO: change color
+
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);
     }
