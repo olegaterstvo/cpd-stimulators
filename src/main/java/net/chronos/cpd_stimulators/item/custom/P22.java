@@ -1,6 +1,5 @@
 package net.chronos.cpd_stimulators.item.custom;
 
-import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.sound.ModSounds;
 import net.minecraft.world.InteractionHand;
@@ -14,11 +13,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-//import net.minecraft.sounds.SoundSource;
 
-
-public class ETGc extends Item {
-    public ETGc(Properties properties) {
+public class P22 extends Item {
+    public P22(Properties properties) {
         super(properties);
     }
     @Override
@@ -26,9 +23,6 @@ public class ETGc extends Item {
         if(hand == InteractionHand.MAIN_HAND) {
             player.playSound(ModSounds.APPLY_INJECTOR.get(), 1f,1f);
             player.startUsingItem(hand);
-
-//            level.playSound(player, player.getOnPos(), ModSounds.APPLY_INJECTOR.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
-
         }
         return super.use(level, player, hand);
     }
@@ -46,16 +40,14 @@ public class ETGc extends Item {
 
     private void addEffects(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 1200, 2));
-        player.addEffect(new MobEffectInstance(MobEffects.SATURATION, 1200, 1));
-        player.addEffect(new MobEffectInstance(MobEffects.SATURATION, 1800, 0));
-        player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1800, 0));
-        player.addEffect(new MobEffectInstance(ModEffects.STRESS_RESISTANCE.getDelegate(), 600, 0));
+        player.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 1200, 2));
+        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1200, 2));
     }
     private void addSideEffects(Player player) {
-        ModPlayerEvent.queueWork(1900, () -> {
-            player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 400, 0));
-            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 1200, 0));
-            player.addEffect(new MobEffectInstance(ModEffects.EXHAUSTION.getDelegate(), 1200, 0));
+        ModPlayerEvent.queueWork(1300, () -> {
+            player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 1200,0));
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 1200,0));
+            player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 1200,0));
         });
     }
 

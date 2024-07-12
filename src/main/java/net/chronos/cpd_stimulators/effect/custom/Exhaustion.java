@@ -22,10 +22,8 @@ public class Exhaustion extends MobEffect {
     @Override
     public boolean applyEffectTick(LivingEntity livingEntity, int amplifier) {
         if ( livingEntity.getAttribute(Attributes.MAX_HEALTH).hasModifier(ResourceLocation.fromNamespaceAndPath("cpd_stimulators", "exhaustion")) ){
-            modifier = new AttributeModifier(ResourceLocation.fromNamespaceAndPath("cpd_stimulators", "exhaustion"),
-                    (4.0f + amplifier * 4.0f) * -1,
-                    AttributeModifier.Operation.ADD_VALUE
-            );
+            modifier = livingEntity.getAttribute(Attributes.MAX_HEALTH).getModifier(ResourceLocation.fromNamespaceAndPath("cpd_stimulators", "exhaustion"));
+
             livingEntity.getAttribute(Attributes.MAX_HEALTH).removeModifier(modifier);
         }
         return super.applyEffectTick(livingEntity, amplifier);
@@ -61,6 +59,8 @@ public class Exhaustion extends MobEffect {
     public static void effectEvent(MobEffectEvent.Remove event){
         if (event.getEffectInstance().is(ModEffects.EXHAUSTION)){
             if ( event.getEntity().getAttribute(Attributes.MAX_HEALTH).hasModifier(ResourceLocation.fromNamespaceAndPath("cpd_stimulators", "exhaustion")) ) {
+                modifier = event.getEntity().getAttribute(Attributes.MAX_HEALTH).getModifier(ResourceLocation.fromNamespaceAndPath("cpd_stimulators", "exhaustion"));
+
 
                 event.getEntity().getAttribute(Attributes.MAX_HEALTH).removeModifier(modifier);
             }

@@ -1,8 +1,7 @@
 package net.chronos.cpd_stimulators.effect;
 
 import net.chronos.cpd_stimulators.CPDStimulators;
-import net.chronos.cpd_stimulators.effect.custom.Exhaustion;
-import net.chronos.cpd_stimulators.effect.custom.Vulnerability;
+import net.chronos.cpd_stimulators.effect.custom.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.neoforged.bus.api.IEventBus;
@@ -17,6 +16,12 @@ public class ModEffects {
             () -> new Exhaustion(MobEffectCategory.HARMFUL, 0x111111));
     public static final DeferredHolder<MobEffect, MobEffect> VULNERABILITY = MOB_EFFECTS.register("vulnerability",
             () -> new Vulnerability(MobEffectCategory.HARMFUL, 0xff0000));
+    public static final DeferredHolder<MobEffect, MobEffect> CONFUSED = MOB_EFFECTS.register("confused",
+            () -> new Confused(MobEffectCategory.HARMFUL, 0xff7257));
+    public static final DeferredHolder<MobEffect, MobEffect> STRESS_RESISTANCE = MOB_EFFECTS.register("stress_resistance",
+            () -> new StressResistance(MobEffectCategory.BENEFICIAL, 0x6374ce));
+    public static final DeferredHolder<MobEffect, MobEffect> ANTIDOTE = MOB_EFFECTS.register("antidote",
+            () -> new Antidote(MobEffectCategory.BENEFICIAL, 0x96f605));
 
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);

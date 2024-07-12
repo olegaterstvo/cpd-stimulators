@@ -1,6 +1,6 @@
 package net.chronos.cpd_stimulators.item.custom;
 
-import net.chronos.cpd_stimulators.event.ModClientTickEvent;
+import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.sound.ModSounds;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -42,8 +42,8 @@ public class Meldonin extends Item {
         player.addEffect(new MobEffectInstance(MobEffects.SATURATION, 18000, 0));
     }
     private void addSideEffects(Player player) {
-        ModClientTickEvent.queueServerWork(600, () -> {
-            player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 18000));
+        ModPlayerEvent.queueWork(600, () -> {
+            player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 18000, 0));
             // -hydration potentially
         });
     }

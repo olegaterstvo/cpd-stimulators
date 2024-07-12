@@ -1,10 +1,7 @@
 package net.chronos.cpd_stimulators.item;
 
 import net.chronos.cpd_stimulators.CPDStimulators;
-import net.chronos.cpd_stimulators.item.custom.ETGc;
-import net.chronos.cpd_stimulators.item.custom.Meldonin;
-import net.chronos.cpd_stimulators.item.custom.PNB;
-import net.chronos.cpd_stimulators.item.custom.Propital;
+import net.chronos.cpd_stimulators.item.custom.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -28,6 +25,34 @@ public class ModItems {
             () -> new PNB(new Item.Properties().stacksTo(16)));
     public static final DeferredItem<Item> MELDONIN_INJECTOR = registerItem("meldonin",
             () -> new Meldonin(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> ADRENALINE_INJECTOR = registerItem("adrenaline",
+            () -> new Adrenaline(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> AHF1M_INJECTOR = registerItem("ahf1m",
+            () -> new AHF1M(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> BTG2A2_INJECTOR = registerItem("btg2a2",
+            () -> new BTG2A2(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> BTG3_INJECTOR = registerItem("btg3",
+            () -> new BTG3(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> L1_INJECTOR = registerItem("l1",
+            () -> new L1(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> MULE_INJECTOR = registerItem("mule",
+            () -> new Mule(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> OBDOLBOS_INJECTOR = registerItem("obdolbos",
+            () -> new Obdolbos(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> OBDOLBOS2_INJECTOR = registerItem("obdolbos2",
+            () -> new Obdolbos2(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> P22_INJECTOR = registerItem("p22",
+            () -> new P22(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> PERFOTORAN_INJECTOR = registerItem("perfotoran",
+            () -> new Perfotoran(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> SJ1_INJECTOR = registerItem("sj1",
+            () -> new SJ1(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> SJ6_INJECTOR = registerItem("sj6",
+            () -> new SJ6(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> TRIMADOL_INJECTOR = registerItem("trimadol",
+            () -> new Trimadol(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> ZAGUSTIN_INJECTOR = registerItem("zagustin",
+            () -> new Zagustin(new Item.Properties().stacksTo(16)));
 
 
 

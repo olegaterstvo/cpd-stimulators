@@ -1,7 +1,7 @@
 package net.chronos.cpd_stimulators.item.custom;
 
 import net.chronos.cpd_stimulators.effect.ModEffects;
-import net.chronos.cpd_stimulators.event.ModClientTickEvent;
+import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.sound.ModSounds;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -40,12 +40,13 @@ public class PNB extends Item {
     private void addEffects(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 800, 1));
         player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 800, 1));
+        player.addEffect(new MobEffectInstance(ModEffects.STRESS_RESISTANCE.getDelegate(), 800, 0));
     }
     private void addSideEffects(Player player) {
-        ModClientTickEvent.queueServerWork(820, () -> {
+        ModPlayerEvent.queueWork(820, () -> {
             player.addEffect(new MobEffectInstance(ModEffects.EXHAUSTION.getDelegate(), 3600, 0));
             player.addEffect(new MobEffectInstance(ModEffects.VULNERABILITY.getDelegate(), 3600, 0));
-            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 0));
+            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 300, 0));
         });
     }
     @Override

@@ -1,6 +1,7 @@
 package net.chronos.cpd_stimulators.item.custom;
 
-import net.chronos.cpd_stimulators.event.ModClientTickEvent;
+import net.chronos.cpd_stimulators.effect.ModEffects;
+import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.sound.ModSounds;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -31,6 +32,9 @@ public class Propital extends Item {
         Player player = (Player) livingEntity;
         addEffects(player);
         addSideEffects(player);
+        if (player.getEffect(ModEffects.CONFUSED.getDelegate()) != null){
+            player.removeEffect(ModEffects.CONFUSED.getDelegate());
+        }
         player.getCooldowns().addCooldown(this, 600);
         player.getMainHandItem().shrink(1);
 
@@ -41,11 +45,12 @@ public class Propital extends Item {
         player.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 6000, 0));
         player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 6000, 1));
         player.addEffect(new MobEffectInstance(MobEffects.SATURATION, 6000, 0));
+        player.addEffect(new MobEffectInstance(ModEffects.STRESS_RESISTANCE.getDelegate(), 4800, 0));
     }
     private void addSideEffects(Player player) {
-        ModClientTickEvent.queueServerWork(5400, () -> {
-            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 600));
-            player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 600));
+        ModPlayerEvent.queueWork(5400, () -> {
+            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 0));
+            player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 600, 0));
         });
     }
     @Override
