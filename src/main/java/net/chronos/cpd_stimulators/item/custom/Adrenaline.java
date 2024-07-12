@@ -3,6 +3,8 @@ package net.chronos.cpd_stimulators.item.custom;
 import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.sound.ModSounds;
+import net.minecraft.commands.arguments.ComponentArgument;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -11,9 +13,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+
+import java.text.MessageFormat;
+import java.util.List;
 
 public class Adrenaline extends Item {
     public Adrenaline(Properties properties) {
@@ -50,6 +56,14 @@ public class Adrenaline extends Item {
             player.addEffect(new MobEffectInstance(ModEffects.VULNERABILITY.getDelegate(), 1200, 0));
             player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 600, 0));
         });
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        tooltipComponents.add(Component.literal(""+Component.translatable("effect.minecraft.speed").getString()+" "));
+
+
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 
     @Override

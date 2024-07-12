@@ -16,12 +16,14 @@ public class CPDStimulators {
     public static final String MOD_ID = "cpd_stimulators";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public CPDStimulators(IEventBus eventBus, ModContainer modContainer){
+    public CPDStimulators(IEventBus eventBus, ModContainer modContainer) {
         ModItemGroup.register(eventBus);
         ModItems.register(eventBus);
         ModEffects.register(eventBus);
         ModSounds.register(eventBus);
     }
+<<<<<<< HEAD
+=======
 
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
 //    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
@@ -114,4 +116,5 @@ public class CPDStimulators {
 //            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 //        }
 //    }
+>>>>>>> parent of 1dbf7bc (123)
 }
