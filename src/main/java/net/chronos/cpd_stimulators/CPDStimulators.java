@@ -16,7 +16,7 @@ public class CPDStimulators {
     public static final String MOD_ID = "cpd_stimulators";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public CPDStimulators(IEventBus eventBus, ModContainer modContainer) {
+    public CPDStimulators(IEventBus eventBus, ModContainer modContainer){
         ModItemGroup.register(eventBus);
         ModItems.register(eventBus);
         ModEffects.register(eventBus);
