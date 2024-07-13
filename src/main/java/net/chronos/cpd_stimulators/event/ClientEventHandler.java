@@ -2,6 +2,7 @@ package net.chronos.cpd_stimulators.event;
 
 import net.chronos.cpd_stimulators.CPDStimulators;
 import net.chronos.cpd_stimulators.effect.ModEffects;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -184,16 +185,17 @@ public class ClientEventHandler {
         DecimalFormat format = new DecimalFormat(); format.setDecimalSeparatorAlwaysShown(false);
         Float w = Weights.getWeight(event.getItemStack().getItem().getClass().getSimpleName()) * event.getItemStack().getCount();
 
-        weight = "§7⭐ " + Component.translatable("misc.cpd_stimulators.weight").getString() + ": " + String.valueOf(format.format(w)) + " " + Component.translatable("misc.cpd_stimulators.cu").getString();
+        weight = "§7⭐ §8" + Component.translatable("misc.cpd_stimulators.weight").getString() + ": §7" + String.valueOf(format.format(w)) + " §8" + Component.translatable("misc.cpd_stimulators.cu").getString();
         coloredWeight = (w < 600f ? (w < 400f ? (w < 100f ? (w < 5f ? "§7" : "§2") : "§e") : "§6") : "§4") + "⭐ " + Component.translatable("misc.cpd_stimulators.weight").getString() + ": " + String.valueOf(format.format(w)) + " " + Component.translatable("misc.cpd_stimulators.cu").getString();
 
         if (event.getItemStack().has(DataComponents.CUSTOM_DATA)) {
             String ownerId = Objects.requireNonNull(event.getItemStack().get(DataComponents.CUSTOM_DATA)).copyTag().getString("ownerId");
             if (!event.getEntity().getStringUUID().equals(ownerId)) weight = "§7⭐ " + Component.translatable("misc.cpd_stimulators.weight").getString() + ": ∞";
 
-            event.getToolTip().add(Component.literal("§7❤ " + Component.translatable("misc.cpd_stimulators.owner").getString() + ": §e" + Objects.requireNonNull(event.getItemStack().get(DataComponents.CUSTOM_DATA)).copyTag().getString("owner")));
+            event.getToolTip().add(Component.literal("§7❤ §8" + Component.translatable("misc.cpd_stimulators.owner").getString() + ": §e" + Objects.requireNonNull(event.getItemStack().get(DataComponents.CUSTOM_DATA)).copyTag().getString("owner")));
         }
 
-        event.getToolTip().add(Component.literal(weight));
+        event.getToolTip().add(Component.literal(""));
+        event.getToolTip().addLast(Component.literal(weight));
     }
 }
