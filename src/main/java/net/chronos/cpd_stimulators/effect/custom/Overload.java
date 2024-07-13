@@ -12,19 +12,23 @@ import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
 
 @EventBusSubscriber(modid = CPDStimulators.MOD_ID)
 public class Overload extends MobEffect {
-    public Overload(MobEffectCategory category, int color) {
-        super(category, color);
-    }
+    public Overload(MobEffectCategory category, int color) { super(category, color); }
 
-    private static float MAX_WEIGHT = 27648f * 1.75f;
+    private static float MAX_WEIGHT = 27648f;
+    public static float STOP_SPRINTING_THRESHOLD = 13824f;
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public static void onMovementInputUpdate(MovementInputUpdateEvent event) {
         if (!event.getEntity().hasEffect(ModEffects.OVERLOAD.getDelegate())) return;
 
+        float modifier = MAX_WEIGHT;
+        if (event.getEntity().hasEffect(ModEffects.INCREASED_CARRYING_CAPACITY.getDelegate())) modifier = MAX_WEIGHT * 2.5f;
+
         float overload_amplifier = event.getEntity().getPersistentData().getFloat("overload_amplifier");
-        event.getInput().forwardImpulse = event.getInput().forwardImpulse * (1 - overload_amplifier / MAX_WEIGHT);
-        event.getInput().leftImpulse = event.getInput().leftImpulse * (1 - overload_amplifier / MAX_WEIGHT);
+        float f = (float) Math.pow(overload_amplifier / modifier, 5);
+
+        event.getInput().forwardImpulse = event.getInput().forwardImpulse * (1 - f);
+        event.getInput().leftImpulse = event.getInput().leftImpulse * (1 - f);
     }
 }

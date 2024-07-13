@@ -1,5 +1,6 @@
 package net.chronos.cpd_stimulators.item.custom;
 
+import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.sound.ModSounds;
 import net.minecraft.world.InteractionHand;
@@ -39,7 +40,7 @@ public class Mule extends Item {
     }
 
     private void addEffects(Player player) {
-        // weight limit +50% 18000 WIP
+        player.addEffect(new MobEffectInstance(ModEffects.INCREASED_CARRYING_CAPACITY.getDelegate(), 18000, 0));
     }
     private void addSideEffects(Player player) {
         ModPlayerEvent.queueWork(20, () -> {

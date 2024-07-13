@@ -29,6 +29,8 @@ public class ModEffects {
             () -> new Overload(MobEffectCategory.HARMFUL, 0x6374CE)); // TODO: change color
     public static final DeferredHolder<MobEffect, MobEffect> PHOTOPSIA = MOB_EFFECTS.register("photopsia",
             () -> new Photopsia(MobEffectCategory.HARMFUL, 0x6374CE)); // TODO: change color
+    public static final DeferredHolder<MobEffect, MobEffect> INCREASED_CARRYING_CAPACITY = MOB_EFFECTS.register("increased_carrying_capacity",
+            () -> new Blank(MobEffectCategory.BENEFICIAL, 0x6374CE)); // TODO: change color
 
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);

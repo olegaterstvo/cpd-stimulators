@@ -2,7 +2,6 @@ package net.chronos.cpd_stimulators.event;
 
 import net.chronos.cpd_stimulators.CPDStimulators;
 import net.chronos.cpd_stimulators.effect.ModEffects;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -13,8 +12,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
@@ -24,6 +21,8 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static net.chronos.cpd_stimulators.effect.custom.Overload.STOP_SPRINTING_THRESHOLD;
 
 @EventBusSubscriber(modid = CPDStimulators.MOD_ID)
 @OnlyIn(Dist.CLIENT)
@@ -122,11 +121,11 @@ public class ClientEventHandler {
                 .collect(Collectors.toMap(Enum::name, Function.identity()));
 
         public static float getWeight(final String name) {
-            return ENUM_MAP.getOrDefault(name, AirItem).weight;
+            return ENUM_MAP.getOrDefault(name, Item).weight;
         }
 
         public static boolean getBindable(final String name) {
-            return ENUM_MAP.getOrDefault(name, AirItem).bindable;
+            return ENUM_MAP.getOrDefault(name, Item).bindable;
         }
 
         private final boolean bindable;
@@ -172,7 +171,8 @@ public class ClientEventHandler {
             event.getEntity().addEffect(new MobEffectInstance(ModEffects.INSUPERABILITY, -1));
         } else {
             event.getEntity().getPersistentData().putFloat("overload_amplifier", sum);
-            event.getEntity().addEffect(new MobEffectInstance(ModEffects.OVERLOAD, -1));
+            event.getEntity().addEffect(new MobEffectInstance(ModEffects.OVERLOAD, -1, 0, false, false));
+            if (sum > STOP_SPRINTING_THRESHOLD && event.getEntity().isSprinting()) event.getEntity().setSprinting(false);
         }
     }
 
