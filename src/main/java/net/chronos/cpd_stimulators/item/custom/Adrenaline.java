@@ -65,6 +65,7 @@ public class Adrenaline extends Item {
             tooltipComponents.add(Component.translatable("misc.cpd_stimulators.press_shift"));
             return;
         }
+
         tooltipComponents.add(Component.literal("§o§7"+"60" + Component.translatable("misc.cpd_stimulators.duration").getString()));
         tooltipComponents.add(Component.literal("   §b"+Component.translatable("effect.minecraft.speed").getString()+" "));
         tooltipComponents.add(Component.literal("   §b"+Component.translatable("effect.minecraft.strength").getString()+" "));

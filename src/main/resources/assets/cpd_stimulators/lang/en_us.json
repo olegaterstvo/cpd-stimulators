@@ -37,6 +37,7 @@
   "misc.cpd_stimulators.duration": "s Duration: ",
   "misc.cpd_stimulators.delay": "s Delay; ",
   "misc.cpd_stimulators.press_shift": "§o§9Shift§r§7 for more information",
+  "misc.cpd_stimulators.press_ctrl": "§o§9Ctrl§r§7 for legacy description",
 
   "itemGroup.cpd_stimulators": "CPD: Stimulators"
 }
