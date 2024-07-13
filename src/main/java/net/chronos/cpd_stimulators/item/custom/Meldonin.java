@@ -1,23 +1,53 @@
 package net.chronos.cpd_stimulators.item.custom;
 
 import net.chronos.cpd_stimulators.event.ModPlayerEvent;
+import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Meldonin extends Item {
+    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> positives = new ArrayList<>();
+    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> negatives = new ArrayList<>();
+
     public Meldonin(Properties properties) {
         super(properties);
+
+        positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST,    900,    0), 0));
+        positives.add(Pair.of(Triple.of(MobEffects.MOVEMENT_SPEED,  900,    1), 0));
+        positives.add(Pair.of(Triple.of(MobEffects.SATURATION,      900,    0), 0));
+
+        // TODO: -Hydration
+        negatives.add(Pair.of(Triple.of(MobEffects.HUNGER,          18000,  0), 30));
     }
+
+    private void addEffects(Player player) { ModItems.addEffects(player, positives); }
+    private void addSideEffects(Player player) { ModItems.addSideEffects(player, negatives); }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        ModItems.appendHoverText(stack, context, tooltipComponents, tooltipFlag, positives, negatives);
+    }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if(hand == InteractionHand.MAIN_HAND) {
@@ -26,6 +56,7 @@ public class Meldonin extends Item {
         }
         return super.use(level, player, hand);
     }
+
     @Override
     public @NotNull ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
         Player player = (Player) livingEntity;
@@ -36,21 +67,12 @@ public class Meldonin extends Item {
 
         return super.finishUsingItem(stack, level, livingEntity);
     }
-    private void addEffects(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 18000, 0));
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 18000, 1));
-        player.addEffect(new MobEffectInstance(MobEffects.SATURATION, 18000, 0));
-    }
-    private void addSideEffects(Player player) {
-        ModPlayerEvent.queueWork(600, () -> {
-            player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 18000, 0));
-            // -hydration potentially
-        });
-    }
+
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.BRUSH;
     }
+
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity p_344979_) {
         return 10;

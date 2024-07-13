@@ -1,23 +1,52 @@
 package net.chronos.cpd_stimulators.item.custom;
 
 import net.chronos.cpd_stimulators.event.ModPlayerEvent;
+import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SJ1 extends Item {
+    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> positives = new ArrayList<>();
+    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> negatives = new ArrayList<>();
+
     public SJ1(Properties properties) {
         super(properties);
+
+        positives.add(Pair.of(Triple.of(MobEffects.MOVEMENT_SPEED,          160,    1), 0));
+        positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST,            160,    1), 0));
+        positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_RESISTANCE,       160,    1), 0));
+
+        negatives.add(Pair.of(Triple.of(MobEffects.HUNGER,                  200,    0), 100));
     }
+
+    private void addEffects(Player player) { ModItems.addEffects(player, positives); }
+    private void addSideEffects(Player player) { ModItems.addSideEffects(player, negatives); }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        ModItems.appendHoverText(stack, context, tooltipComponents, tooltipFlag, positives, negatives);
+    }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if(hand == InteractionHand.MAIN_HAND) {
@@ -38,21 +67,11 @@ public class SJ1 extends Item {
         return super.finishUsingItem(stack, level, livingEntity);
     }
 
-    private void addEffects(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 3200, 1));
-        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 3200, 1));
-        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 3200, 1));
-    }
-    private void addSideEffects(Player player) {
-        ModPlayerEvent.queueWork(2000, () -> {
-            player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 4000,0));
-        });
-    }
-
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.BRUSH;
     }
+
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity p_344979_) {
         return 10;

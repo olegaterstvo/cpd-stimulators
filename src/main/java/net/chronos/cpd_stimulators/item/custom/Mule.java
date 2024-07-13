@@ -2,12 +2,14 @@ package net.chronos.cpd_stimulators.item.custom;
 
 import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.chronos.cpd_stimulators.event.ModPlayerEvent;
+import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -18,16 +20,38 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import org.apache.commons.lang3.tuple.Triple;
+import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mule extends Item {
+    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> positives = new ArrayList<>();
+    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> negatives = new ArrayList<>();
+
     public Mule(Properties properties) {
         super(properties);
+
+        positives.add(Pair.of(Triple.of(ModEffects.INCREASED_CARRYING_CAPACITY.getDelegate(),   900, 0), 0));
+
+        negatives.add(Pair.of(Triple.of(MobEffects.POISON,                                      20,  0), 1));
+        negatives.add(Pair.of(Triple.of(MobEffects.HUNGER,                                      900, 2), 1));
     }
+
+    private void addEffects(Player player) { ModItems.addEffects(player, positives); }
+    private void addSideEffects(Player player) { ModItems.addSideEffects(player, negatives); }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        ModItems.appendHoverText(stack, context, tooltipComponents, tooltipFlag, positives, negatives);
+    }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if(hand == InteractionHand.MAIN_HAND) {
-            player.playSound(ModSounds.APPLY_INJECTOR.get(), 1f,1f);
+        if (hand == InteractionHand.MAIN_HAND) {
+            player.playSound(ModSounds.APPLY_INJECTOR.get(), 1f, 1f);
             player.startUsingItem(hand);
         }
         return super.use(level, player, hand);
@@ -42,35 +66,6 @@ public class Mule extends Item {
         player.getMainHandItem().shrink(1);
 
         return super.finishUsingItem(stack, level, livingEntity);
-    }
-
-    private void addEffects(Player player) {
-        player.addEffect(new MobEffectInstance(ModEffects.INCREASED_CARRYING_CAPACITY.getDelegate(), 18000, 0));
-    }
-
-    private void addSideEffects(Player player) {
-        ModPlayerEvent.queueWork(20, () -> {
-            player.addEffect(new MobEffectInstance(MobEffects.POISON,400,0));
-            player.addEffect(new MobEffectInstance(MobEffects.HUNGER,18000,0));
-        });
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        if (!Screen.hasShiftDown()){
-            tooltipComponents.add(Component.translatable("misc.cpd_stimulators.press_shift"));
-            return;
-        }
-
-        tooltipComponents.add(Component.literal("§o§7"+"900" + Component.translatable("misc.cpd_stimulators.duration").getString()));
-        tooltipComponents.add(Component.literal("   §b"+Component.translatable("effect.cpd_stimulators.increased_carrying_capacity").getString()+" "));
-
-        tooltipComponents.add(Component.literal("§o§7"+"1" + Component.translatable("misc.cpd_stimulators.delay").getString() + "20" + Component.translatable("misc.cpd_stimulators.duration").getString()));
-        tooltipComponents.add(Component.literal("   §c"+Component.translatable("effect.minecraft.poison").getString()+" "));
-
-        tooltipComponents.add(Component.literal("§o§7"+"1" + Component.translatable("misc.cpd_stimulators.delay").getString() + "900" + Component.translatable("misc.cpd_stimulators.duration").getString()));
-        tooltipComponents.add(Component.literal("   §c"+Component.translatable("effect.minecraft.hunger").getString()+" "));
     }
 
     @Override

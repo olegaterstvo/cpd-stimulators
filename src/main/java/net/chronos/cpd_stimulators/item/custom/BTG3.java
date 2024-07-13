@@ -1,11 +1,14 @@
 package net.chronos.cpd_stimulators.item.custom;
 
 import net.chronos.cpd_stimulators.event.ModPlayerEvent;
+import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,14 +18,38 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BTG3 extends Item {
+    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> positives = new ArrayList<>();
+    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> negatives = new ArrayList<>();
+
     public BTG3(Properties properties) {
         super(properties);
+
+        positives.add(Pair.of(Triple.of(MobEffects.LUCK,            240,    2), 0));
+        positives.add(Pair.of(Triple.of(MobEffects.NIGHT_VISION,    240,    0), 0));
+        positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST,    240,    0), 0));
+        positives.add(Pair.of(Triple.of(MobEffects.SATURATION,      240,    0), 0));
+
+        negatives.add(Pair.of(Triple.of(MobEffects.HUNGER,          120,    0), 120));
+        negatives.add(Pair.of(Triple.of(MobEffects.CONFUSION,       20,     0), 220));
     }
+
+    private void addEffects(Player player) { ModItems.addEffects(player, positives); }
+    private void addSideEffects(Player player) { ModItems.addSideEffects(player, negatives); }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        ModItems.appendHoverText(stack, context, tooltipComponents, tooltipFlag, positives, negatives);
+    }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if(hand == InteractionHand.MAIN_HAND) {
@@ -43,45 +70,11 @@ public class BTG3 extends Item {
         return super.finishUsingItem(stack, level, livingEntity);
     }
 
-    private void addEffects(Player player) {
-        player.addEffect(new MobEffectInstance(MobEffects.LUCK, 4800, 2));
-        player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 4800, 0));
-        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 4800, 0));
-        player.addEffect(new MobEffectInstance(MobEffects.SATURATION, 4800, 0));
-    }
-    private void addSideEffects(Player player) {
-        ModPlayerEvent.queueWork(2400, () -> {
-            player.addEffect(new MobEffectInstance(MobEffects.HUNGER,2400,0));
-        });
-        ModPlayerEvent.queueWork(4400, () -> {
-            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION,400,0));
-        });
-    }
-    @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        if (!Screen.hasShiftDown()){
-            tooltipComponents.add(Component.translatable("misc.cpd_stimulators.press_shift"));
-            return;
-        }
-        tooltipComponents.add(Component.literal("§o§7"+"240" + Component.translatable("misc.cpd_stimulators.duration").getString()));
-        tooltipComponents.add(Component.literal("   §b"+Component.translatable("effect.minecraft.luck").getString()+" "));
-        tooltipComponents.add(Component.literal("   §b"+Component.translatable("effect.minecraft.night_vision").getString()+" "));
-        tooltipComponents.add(Component.literal("   §b"+Component.translatable("effect.minecraft.strength").getString()+" "));
-        tooltipComponents.add(Component.literal("   §b"+Component.translatable("effect.minecraft.saturation").getString()+" "));
-
-        tooltipComponents.add(Component.literal("§o§7"+"120" + Component.translatable("misc.cpd_stimulators.delay").getString()
-                + "120" + Component.translatable("misc.cpd_stimulators.duration").getString()));
-        tooltipComponents.add(Component.literal("   §c"+Component.translatable("effect.minecraft.hunger").getString()+" "));
-
-        tooltipComponents.add(Component.literal("§o§7"+"220" + Component.translatable("misc.cpd_stimulators.delay").getString()
-                + "20" + Component.translatable("misc.cpd_stimulators.duration").getString()));
-        tooltipComponents.add(Component.literal("   §c"+Component.translatable("effect.minecraft.nausea").getString()+" "));
-    }
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.BRUSH;
     }
+
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity p_344979_) {
         return 10;
