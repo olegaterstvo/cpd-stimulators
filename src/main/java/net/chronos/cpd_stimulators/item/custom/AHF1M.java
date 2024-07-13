@@ -33,6 +33,7 @@ public class AHF1M extends Item {
     public AHF1M(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(MobEffects.REGENERATION,    60, 0), 0));
 
         negatives.add(Pair.of(Triple.of(MobEffects.HUNGER,          60, 0), 60));

@@ -31,12 +31,13 @@ public class Meldonin extends Item {
     public Meldonin(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST,    900,    0), 0));
         positives.add(Pair.of(Triple.of(MobEffects.MOVEMENT_SPEED,  900,    1), 0));
         positives.add(Pair.of(Triple.of(MobEffects.SATURATION,      900,    0), 0));
 
         // TODO: -Hydration
-        negatives.add(Pair.of(Triple.of(MobEffects.HUNGER,          18000,  0), 30));
+        negatives.add(Pair.of(Triple.of(MobEffects.HUNGER,          900,  0), 30));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

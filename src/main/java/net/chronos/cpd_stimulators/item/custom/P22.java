@@ -31,6 +31,7 @@ public class P22 extends Item {
     public P22(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(MobEffects.REGENERATION,        60, 2), 0));
         positives.add(Pair.of(Triple.of(MobEffects.HEALTH_BOOST,        60, 2), 0));
         positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_RESISTANCE,   60, 2), 0));

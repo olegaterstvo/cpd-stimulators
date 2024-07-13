@@ -34,6 +34,7 @@ public class ETGc extends Item {
     public ETGc(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(MobEffects.REGENERATION,        60, 2), 0));
         positives.add(Pair.of(Triple.of(MobEffects.SATURATION,          60, 1), 0));
         // positives.add(Pair.of(Triple.of(MobEffects.SATURATION,          90, 0), 0));

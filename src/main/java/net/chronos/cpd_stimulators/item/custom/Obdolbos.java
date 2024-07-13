@@ -36,39 +36,41 @@ public class Obdolbos extends Item {
     }
 
     private void addEffects(Player player) {
+        if (player.isLocalPlayer()) return;
         Random rnd = new Random();
 
         // 25% of happening for each effect
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.MOVEMENT_SPEED, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.GLOWING, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.NIGHT_VISION, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_RESISTANCE, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.HERO_OF_THE_VILLAGE, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.REGENERATION, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.SATURATION, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.DIG_SPEED, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.DOLPHINS_GRACE, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.WATER_BREATHING, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.SLOW_FALLING, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.JUMP, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.INVISIBILITY, 12000, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(ModEffects.STRESS_RESISTANCE, 12000, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.MOVEMENT_SPEED, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.GLOWING, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.NIGHT_VISION, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_RESISTANCE, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.HERO_OF_THE_VILLAGE, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.REGENERATION, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.SATURATION, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.DIG_SPEED, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.DOLPHINS_GRACE, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.WATER_BREATHING, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.SLOW_FALLING, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.JUMP, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.INVISIBILITY, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(ModEffects.STRESS_RESISTANCE, 600, 0), 0));
 
         ModItems.addEffects(player, positives);
     }
 
     private void addSideEffects(Player player) {
+        if (player.isLocalPlayer()) return;
         Random rnd = new Random();
 
-        // 25% of happening for each effect
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.HUNGER, 12000, 1), 1));
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.CONFUSION, 12000, 0), 1));
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.POISON, 12000, 0), 1));
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(ModEffects.VULNERABILITY, 12000, 0), 1));
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(ModEffects.EXHAUSTION, 12000, 0), 1));
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.DARKNESS, 12000, 0), 1));
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.UNLUCK, 12000, 0), 1));
+        // 25% of happening for each effect          pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.HUNGER, 600, 1), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.CONFUSION, 600, 0), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.POISON, 600, 0), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(ModEffects.VULNERABILITY, 600, 0), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(ModEffects.EXHAUSTION, 600, 0), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.DARKNESS, 600, 0), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.UNLUCK, 600, 0), 1));
 
         ModItems.addSideEffects(player, negatives);
     }

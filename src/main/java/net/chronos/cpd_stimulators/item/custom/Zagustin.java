@@ -31,6 +31,7 @@ public class Zagustin extends Item {
     public Zagustin(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(MobEffects.REGENERATION,    3,      2), 0));
         positives.add(Pair.of(Triple.of(MobEffects.HEALTH_BOOST,    160,    1), 0));
 

@@ -32,6 +32,7 @@ public class PNB extends Item {
     public PNB(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST,            40,     1), 0));
         positives.add(Pair.of(Triple.of(MobEffects.REGENERATION,            40,     1), 0));
         positives.add(Pair.of(Triple.of(ModEffects.STRESS_RESISTANCE,       40,     0), 0));

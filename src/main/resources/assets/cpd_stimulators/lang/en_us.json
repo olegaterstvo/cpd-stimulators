@@ -17,6 +17,7 @@
   "item.cpd_stimulators.sj6": "SJ6",
   "item.cpd_stimulators.trimadol": "Trimadol",
   "item.cpd_stimulators.zagustin": "Zagustin",
+  "item.cpd_stimulators.sj15": "SJ15",
 
   "effect.cpd_stimulators.exhaustion": "Exhaustion",
   "effect.cpd_stimulators.vulnerability": "Vulnerability",
@@ -38,6 +39,7 @@
   "misc.cpd_stimulators.delay": "§7%1$ss §8Delay; §r",
   "misc.cpd_stimulators.press_shift": "§o§9Shift§r§7 for more information",
   "misc.cpd_stimulators.press_ctrl": "§o§9Ctrl§r§7 for legacy description",
+  "misc.cpd_stimulators.chance_of_death": "   %s Chance of §cInstant Death",
 
   "itemGroup.cpd_stimulators": "CPD: Stimulators"
 }

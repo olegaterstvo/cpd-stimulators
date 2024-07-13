@@ -32,6 +32,7 @@ public class Trimadol extends Item {
     public Trimadol(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(MobEffects.MOVEMENT_SPEED,          180, 0), 0));
         positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST,            180, 0), 0));
         positives.add(Pair.of(Triple.of(MobEffects.LUCK,                    180, 0), 0));

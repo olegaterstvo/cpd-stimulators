@@ -31,6 +31,7 @@ public class SJ1 extends Item {
     public SJ1(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(MobEffects.MOVEMENT_SPEED,          160,    1), 0));
         positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST,            160,    1), 0));
         positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_RESISTANCE,       160,    1), 0));

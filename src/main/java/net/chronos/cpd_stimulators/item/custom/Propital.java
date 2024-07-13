@@ -32,6 +32,7 @@ public class Propital extends Item {
     public Propital(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(MobEffects.HEALTH_BOOST,            300,    0), 0));
         positives.add(Pair.of(Triple.of(MobEffects.REGENERATION,            300,    1), 0));
         positives.add(Pair.of(Triple.of(MobEffects.SATURATION,              300,    0), 0));

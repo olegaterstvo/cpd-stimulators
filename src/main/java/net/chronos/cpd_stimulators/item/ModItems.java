@@ -62,6 +62,8 @@ public class ModItems {
             () -> new Trimadol(new Item.Properties().stacksTo(16)));
     public static final DeferredItem<Item> ZAGUSTIN_INJECTOR = registerItem("zagustin",
             () -> new Zagustin(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> SJ15_INJECTOR = registerItem("sj15",
+            () -> new SJ15(new Item.Properties().stacksTo(16)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

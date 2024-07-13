@@ -31,6 +31,7 @@ public class SJ6 extends Item {
     public SJ6(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(MobEffects.SATURATION,          240,    1), 0));
 
         negatives.add(Pair.of(Triple.of(MobEffects.CONFUSION,           20,     0), 100));

@@ -32,6 +32,7 @@ public class BTG3 extends Item {
     public BTG3(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(MobEffects.LUCK,            240,    2), 0));
         positives.add(Pair.of(Triple.of(MobEffects.NIGHT_VISION,    240,    0), 0));
         positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST,    240,    0), 0));

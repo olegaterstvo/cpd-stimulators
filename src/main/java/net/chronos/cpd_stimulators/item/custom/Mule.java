@@ -33,6 +33,7 @@ public class Mule extends Item {
     public Mule(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(ModEffects.INCREASED_CARRYING_CAPACITY.getDelegate(),   900, 0), 0));
 
         negatives.add(Pair.of(Triple.of(MobEffects.POISON,                                      20,  0), 1));

@@ -31,6 +31,7 @@ public class Obdolbos2 extends Item {
     public Obdolbos2(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         // TODO: weight limit +45%
         positives.add(Pair.of(Triple.of(MobEffects.MOVEMENT_SPEED,  1800,   1), 0));
         positives.add(Pair.of(Triple.of(MobEffects.DIG_SPEED,       1800,   1), 0));

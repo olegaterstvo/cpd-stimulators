@@ -1,4 +1,4 @@
-// 1.21	2024-07-12T07:27:40.0646213	Item Models: cpd_stimulators
+// 1.21	2024-07-13T19:40:46.5807418	Item Models: cpd_stimulators
 644aff5cf393423afe14064342cddd8819fddd21 assets/cpd_stimulators/models/item/adrenaline.json
 b2d6878c50ee09b4c9d4152da74ec3f1494245c0 assets/cpd_stimulators/models/item/ahf1m.json
 910a6f6715e8e2d86db7c028af2be9aa88165ad8 assets/cpd_stimulators/models/item/btg2a2.json
@@ -14,6 +14,7 @@ ae09249863488ad2b1e627269b1934237a5393f8 assets/cpd_stimulators/models/item/p22.
 b68577dd05b75603652f130b6edddfdc948fbc3c assets/cpd_stimulators/models/item/pnb.json
 74f7cd8382ecb86d1671b172156056aa4c523bfc assets/cpd_stimulators/models/item/propital.json
 bf06d58cf485c01f0f1eb0965dcf175e1ad501f7 assets/cpd_stimulators/models/item/sj1.json
+d08d5d9a2a5a7b2c5311d85287158b4c60afdef7 assets/cpd_stimulators/models/item/sj15.json
 c1542a55b4fa5b802e7022f297ac5e7d608388d3 assets/cpd_stimulators/models/item/sj6.json
 fef905581f88df79682287e12373cccc53c30f14 assets/cpd_stimulators/models/item/trimadol.json
 2d0b67f5b6795800a688e73ac6c77f58ce047ed8 assets/cpd_stimulators/models/item/zagustin.json

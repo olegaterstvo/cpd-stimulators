@@ -31,6 +31,7 @@ public class L1 extends Item {
     public L1(Properties properties) {
         super(properties);
 
+        // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         positives.add(Pair.of(Triple.of(MobEffects.MOVEMENT_SPEED,  120,    0), 0));
         positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST,    120,    1), 0));
 
