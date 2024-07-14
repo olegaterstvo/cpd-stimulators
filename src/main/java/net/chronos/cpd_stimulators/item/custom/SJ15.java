@@ -63,7 +63,7 @@ public class SJ15 extends Item {
         }
         ModItems.appendApplicableEffectToTooltip(tooltipComponents, positives, false);
 
-        tooltipComponents.add(Component.literal("§o§7" + (Component.translatable("misc.cpd_stimulators.delay", "900").getString()) +":"));
+        tooltipComponents.add(Component.literal("§o§7" + (Component.translatable("misc.cpd_stimulators.delay", "15m").getString()) +":"));
         tooltipComponents.add(Component.translatable("misc.cpd_stimulators.chance_of_death", Component.literal("50%")));
 
 //        ModItems.appendHoverText(stack, context, tooltipComponents, tooltipFlag, positives, negatives);

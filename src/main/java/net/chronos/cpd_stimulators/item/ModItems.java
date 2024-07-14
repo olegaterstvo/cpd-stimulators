@@ -85,11 +85,29 @@ public class ModItems {
             Optional<Holder.Reference<MobEffect>> mobEffect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.parse(s.getLeft().getLeft()));
 
             mobEffect.ifPresent(mobEffectReference -> {
+                int duration = s.getLeft().getMiddle();
+                int amplifier = s.getLeft().getRight();
+                int delay = s.getRight();
+
+                int durationMinutes = duration / 60;
+                int durationSeconds = duration % 60;
+
+                int delayMinutes = delay / 60;
+                int delaySeconds = delay % 60;
+
+                String duration_ = "";
+                duration_ += durationMinutes > 0 ? String.valueOf(durationMinutes) + Component.translatable("misc.cpd_stimulators.m").getString() : "";
+                duration_ += durationSeconds > 0 ? String.valueOf(durationSeconds) + Component.translatable("misc.cpd_stimulators.s").getString() : "";
+
+                String delay_ = "";
+                delay_ += delayMinutes > 0 ? String.valueOf(delayMinutes) + Component.translatable("misc.cpd_stimulators.m").getString() : "";
+                delay_ += delaySeconds > 0 ? String.valueOf(delaySeconds) + Component.translatable("misc.cpd_stimulators.s").getString() : "";
+
                 String[] registeredName = mobEffectReference.getRegisteredName().split(":");
-                String romanAmplifier = s.getLeft().getRight() == 0 ? "" : s.getLeft().getRight() == 1 ? "II" : s.getLeft().getRight() == 2 ? "III" : s.getLeft().getRight() == 3 ? "IV" : "";
+                String romanAmplifier = amplifier == 0 ? "" : amplifier == 1 ? "II" : amplifier == 2 ? "III" : amplifier == 3 ? "IV" : ""; // freaky
 
                 if (index.get() == 0 || !tives.get(index.get() - 1).getLeft().getMiddle().equals(s.getLeft().getMiddle()))
-                    tooltipComponents.add(Component.literal("§o§7" + (isNegatives ? Component.translatable("misc.cpd_stimulators.delay", s.getRight()).getString() : "") + Component.translatable("misc.cpd_stimulators.duration", s.getLeft().getMiddle()).getString()));
+                    tooltipComponents.add(Component.literal("§o§7" + (isNegatives ? Component.translatable("misc.cpd_stimulators.delay", delay_).getString() : "") + Component.translatable("misc.cpd_stimulators.duration", duration_).getString()));
                 tooltipComponents.add(Component.literal("   " + (isNegatives ? "§c" : "§b") + Component.translatable("effect." + registeredName[0] + "." + registeredName[1]).getString() + " " + romanAmplifier));
 
                 index.addAndGet(1);

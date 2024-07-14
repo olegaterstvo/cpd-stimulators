@@ -80,12 +80,12 @@ public class Obdolbos extends Item {
         }
 
         tooltipComponents.add(Component.literal(""));
-        tooltipComponents.add(Component.literal("§o§7" + Component.translatable("misc.cpd_stimulators.duration", 600).getString()));
+        tooltipComponents.add(Component.literal("§o§7" + Component.translatable("misc.cpd_stimulators.duration", "10m").getString()));
         tooltipComponents.add(Component.literal("   §b§k" + Component.literal("effect.minecraft:health_boost").getString()));
         tooltipComponents.add(Component.literal("   §b§k" + Component.literal("effect.minecraft:luck").getString()));
 
         tooltipComponents.add(Component.literal(""));
-        tooltipComponents.add(Component.literal("§o§7" + Component.translatable("misc.cpd_stimulators.delay", 1).getString() + Component.translatable("misc.cpd_stimulators.duration", 600).getString()));
+        tooltipComponents.add(Component.literal("§o§7" + Component.translatable("misc.cpd_stimulators.delay", "1s").getString() + Component.translatable("misc.cpd_stimulators.duration", "10m").getString()));
         tooltipComponents.add(Component.literal("   §c§k" + Component.literal("effect.minecraft:hunger").getString()));
         tooltipComponents.add(Component.literal("   §c§k" + Component.literal("effect.cpd_stimulators.exhaustion").getString()));
     }

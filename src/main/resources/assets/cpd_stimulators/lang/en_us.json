@@ -35,11 +35,14 @@
   "misc.cpd_stimulators.weight": "Weight",
   "misc.cpd_stimulators.owner": "Owner",
   "misc.cpd_stimulators.cu": "c.u.",
-  "misc.cpd_stimulators.duration": "§7%1$ss §8Duration: §r",
-  "misc.cpd_stimulators.delay": "§7%1$ss §8Delay; §r",
+  "misc.cpd_stimulators.duration": "§7%1$s §8Duration: §r",
+  "misc.cpd_stimulators.delay": "§7%1$s §8Delay; §r",
   "misc.cpd_stimulators.press_shift": "§o§9Shift§r§7 for more information",
   "misc.cpd_stimulators.press_ctrl": "§o§9Ctrl§r§7 for legacy description",
   "misc.cpd_stimulators.chance_of_death": "   %s Chance of §cInstant Death",
+
+  "misc.cpd_stimulators.m": "m",
+  "misc.cpd_stimulators.s": "s",
 
   "itemGroup.cpd_stimulators": "CPD: Stimulators"
 }
