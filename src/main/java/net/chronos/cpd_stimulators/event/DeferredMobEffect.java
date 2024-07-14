@@ -18,10 +18,12 @@ public class DeferredMobEffect {
     public static void add(Player player, String params) {
         if (player.isLocalPlayer()) return;
 
-        for (int i = 0; i < player.getPersistentData().size(); i++) {
+        for (int i = 0; i < 30; i++) {
             if (player.getPersistentData().contains("deferred_" + i)) continue;
             player.getPersistentData().putString("deferred_" + i, params);
-            return;
+            // todo: remove logger
+            CPDStimulators.LOGGER.info(params);
+            break;
         }
     }
 
@@ -34,6 +36,7 @@ public class DeferredMobEffect {
             String[] test = event.getEntity().getPersistentData().getString("deferred_" + i).split("@");
 
             int tick = Integer.parseInt(test[0]);
+            // todo: remove logger
             CPDStimulators.LOGGER.info(i + ": (" + tick + ") " + event.getEntity().getPersistentData().getString("deferred_" + i) + "");
             String effect = test[1];
             int duration = Integer.parseInt(test[2]);

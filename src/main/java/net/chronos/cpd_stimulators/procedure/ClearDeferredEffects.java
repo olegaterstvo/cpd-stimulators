@@ -5,7 +5,7 @@ import net.minecraft.world.entity.player.Player;
 
 public class ClearDeferredEffects {
     public static void execute(Player player) {
-        for (int i = 0; i < player.getPersistentData().size(); i++) {
+        for (int i = 0; i < 50; i++) {
             if (player.getPersistentData().contains("deferred_" + i)) {
                 player.getPersistentData().remove("deferred_" + i);
             };
