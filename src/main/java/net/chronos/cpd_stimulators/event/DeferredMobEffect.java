@@ -18,10 +18,11 @@ public class DeferredMobEffect {
     public static void add(Player player, String params) {
         if (player.isLocalPlayer()) return;
 
-        for (int i = 0; i < player.getPersistentData().size(); i++) {
+        for (int i = 0; i < 30; i++) {
             if (player.getPersistentData().contains("deferred_" + i)) continue;
             player.getPersistentData().putString("deferred_" + i, params);
-            return;
+            CPDStimulators.LOGGER.info(params);
+            break;
         }
     }
 
