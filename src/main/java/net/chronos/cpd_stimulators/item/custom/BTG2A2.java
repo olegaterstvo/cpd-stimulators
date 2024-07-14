@@ -26,11 +26,11 @@ public class BTG2A2 extends Item {
     public BTG2A2(Properties properties) {
         super(properties);
 
-        // TODO: weight limit +15%
-        positives.add(Pair.of(Triple.of("minecraft:luck",            900, 0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:night_vision",    900, 0), 0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:increased_carrying_capacity",      900, 0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:luck",                                   900, 0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:night_vision",                           900, 0), 0));
 
-        negatives.add(Pair.of(Triple.of("minecraft:hunger",          900, 0), 1));
+        negatives.add(Pair.of(Triple.of("minecraft:hunger",                                 900, 0), 1));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

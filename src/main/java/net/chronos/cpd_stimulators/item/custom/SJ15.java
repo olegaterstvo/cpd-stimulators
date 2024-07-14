@@ -34,11 +34,11 @@ public class SJ15 extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        // TODO: weight limit +30%
-        positives.add(Pair.of(Triple.of("minecraft:saturation",                 900, 1), 0));
-        positives.add(Pair.of(Triple.of("minecraft:strength",                   900, 1), 0));
-        positives.add(Pair.of(Triple.of("cpd_stimulators:antidote",             900, 0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:regeneration",               900, 0), 0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:increased_carrying_capacity",      900, 1), 0));
+        positives.add(Pair.of(Triple.of("minecraft:saturation",                             900, 1), 0));
+        positives.add(Pair.of(Triple.of("minecraft:strength",                               900, 1), 0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:antidote",                         900, 0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",                           900, 0), 0));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

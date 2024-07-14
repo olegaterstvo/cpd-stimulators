@@ -28,7 +28,7 @@ public class Mule extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("cpd_stimulators:increased_carrying_capacity",      900, 0), 0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:increased_carrying_capacity",      900, 2), 0));
 
         negatives.add(Pair.of(Triple.of("minecraft:poison",                                 20,  0), 1));
         negatives.add(Pair.of(Triple.of("minecraft:hunger",                                 900, 2), 1));
@@ -67,6 +67,7 @@ public class Mule extends Item {
     public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.BRUSH;
     }
+
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity p_344979_) {
         return 10;

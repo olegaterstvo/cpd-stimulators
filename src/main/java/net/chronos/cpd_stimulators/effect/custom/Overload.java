@@ -23,7 +23,14 @@ public class Overload extends MobEffect {
         if (!event.getEntity().hasEffect(ModEffects.OVERLOAD.getDelegate())) return;
 
         float modifier = MAX_WEIGHT;
-        if (event.getEntity().hasEffect(ModEffects.INCREASED_CARRYING_CAPACITY.getDelegate())) modifier = MAX_WEIGHT * 2.5f;
+        float multiplier = 1;
+
+        if (event.getEntity().hasEffect(ModEffects.INCREASED_CARRYING_CAPACITY.getDelegate())) {
+            int amplifier = event.getEntity().getEffect(ModEffects.INCREASED_CARRYING_CAPACITY.getDelegate()).getAmplifier();
+            multiplier = amplifier == 0 ? 1.15f : amplifier == 1 ? 1.30f : amplifier == 2 ? 1.5f : 1f;
+        }
+
+        if (event.getEntity().hasEffect(ModEffects.INCREASED_CARRYING_CAPACITY.getDelegate())) modifier = MAX_WEIGHT * multiplier;
 
         float overload_amplifier = event.getEntity().getPersistentData().getFloat("overload_amplifier");
         float f = (float) Math.pow(overload_amplifier / modifier, 5);
