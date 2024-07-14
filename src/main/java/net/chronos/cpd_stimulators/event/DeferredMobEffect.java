@@ -18,7 +18,7 @@ public class DeferredMobEffect {
     public static void add(Player player, String params) {
         if (player.isLocalPlayer()) return;
 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 50; i++) {
             if (player.getPersistentData().contains("deferred_" + i)) continue;
             player.getPersistentData().putString("deferred_" + i, params);
             // todo: remove logger
