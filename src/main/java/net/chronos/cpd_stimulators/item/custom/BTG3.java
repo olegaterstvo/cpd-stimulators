@@ -1,16 +1,10 @@
 package net.chronos.cpd_stimulators.item.custom;
 
-import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -26,20 +20,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BTG3 extends Item {
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> positives = new ArrayList<>();
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> negatives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> positives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> negatives = new ArrayList<>();
 
     public BTG3(Properties properties) {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of(MobEffects.LUCK,            240,    2), 0));
-        positives.add(Pair.of(Triple.of(MobEffects.NIGHT_VISION,    240,    0), 0));
-        positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST,    240,    0), 0));
-        positives.add(Pair.of(Triple.of(MobEffects.SATURATION,      240,    0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:luck",               240,    2), 0));
+        positives.add(Pair.of(Triple.of("minecraft:night_vision",       240,    0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:strength",           240,    0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:saturation",         240,    0), 0));
 
-        negatives.add(Pair.of(Triple.of(MobEffects.HUNGER,          120,    0), 120));
-        negatives.add(Pair.of(Triple.of(MobEffects.CONFUSION,       20,     0), 220));
+        negatives.add(Pair.of(Triple.of("minecraft:hunger",             120,    0), 120));
+        negatives.add(Pair.of(Triple.of("minecraft:nausea",             20,     0), 220));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

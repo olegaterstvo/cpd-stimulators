@@ -1,17 +1,10 @@
 package net.chronos.cpd_stimulators.item.custom;
 
-import net.chronos.cpd_stimulators.effect.ModEffects;
-import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -23,25 +16,24 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.NotNull;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Adrenaline extends Item {
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> positives = new ArrayList<>();
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> negatives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> positives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> negatives = new ArrayList<>();
 
     public Adrenaline(Properties properties) {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of(MobEffects.MOVEMENT_SPEED,      60, 0), 0));
-        positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST,        60, 0), 0));
-        positives.add(Pair.of(Triple.of(ModEffects.STRESS_RESISTANCE,   60, 0), 0));
-        positives.add(Pair.of(Triple.of(MobEffects.REGENERATION,        15, 2), 0));
+        positives.add(Pair.of(Triple.of("minecraft:speed",                          60, 0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:strength",                       60, 0), 0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",        60, 0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",                   15, 2), 0));
 
-        negatives.add(Pair.of(Triple.of(ModEffects.VULNERABILITY,       60, 0), 1));
-        negatives.add(Pair.of(Triple.of(MobEffects.HUNGER,              30, 0), 50));
+        negatives.add(Pair.of(Triple.of("cpd_stimulators:vulnerability",            60,  0), 1));
+        negatives.add(Pair.of(Triple.of("minecraft:hunger",                         30,  0), 50));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

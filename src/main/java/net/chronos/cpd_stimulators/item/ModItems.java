@@ -1,12 +1,15 @@
 package net.chronos.cpd_stimulators.item;
 
 import net.chronos.cpd_stimulators.CPDStimulators;
-import net.chronos.cpd_stimulators.event.ModPlayerEvent;
+import net.chronos.cpd_stimulators.event.DeferredMobEffect;
 import net.chronos.cpd_stimulators.item.custom.*;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,6 +21,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 //import net.minecraft.ChatFormatting;
@@ -72,40 +76,49 @@ public class ModItems {
         return ITEMS.register(name, item);
     }
 
-    public static void appendApplicableEffectToTooltip(List<Component> tooltipComponents, List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> tives, boolean isNegatives) {
+    public static void appendApplicableEffectToTooltip(List<Component> tooltipComponents, List<Pair<Triple<String, Integer, Integer>, Integer>> tives, boolean isNegatives) {
         AtomicInteger index = new AtomicInteger();
 
         if (!isNegatives) tooltipComponents.add(Component.literal(""));
 
         tives.forEach((s) -> {
-            String[] registeredName = s.getLeft().getLeft().getRegisteredName().split(":");
-            String romanAmplifier = s.getLeft().getRight() == 0 ? "" : s.getLeft().getRight() == 1 ? "II" : s.getLeft().getRight() == 2 ? "III" : s.getLeft().getRight() == 3 ? "IV" : "";
+            Optional<Holder.Reference<MobEffect>> mobEffect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.parse(s.getLeft().getLeft()));
 
-            if (index.get() == 0 || !tives.get(index.get() - 1).getLeft().getMiddle().equals(s.getLeft().getMiddle()))
-                tooltipComponents.add(Component.literal("§o§7" + (isNegatives ? Component.translatable("misc.cpd_stimulators.delay", s.getRight()).getString() : "") + Component.translatable("misc.cpd_stimulators.duration", s.getLeft().getMiddle()).getString()));
-            tooltipComponents.add(Component.literal("   " + (isNegatives ? "§c" : "§b") + Component.translatable("effect." + registeredName[0] + "." + registeredName[1]).getString() + " " + romanAmplifier));
+            mobEffect.ifPresent(mobEffectReference -> {
+                String[] registeredName = mobEffectReference.getRegisteredName().split(":");
+                String romanAmplifier = s.getLeft().getRight() == 0 ? "" : s.getLeft().getRight() == 1 ? "II" : s.getLeft().getRight() == 2 ? "III" : s.getLeft().getRight() == 3 ? "IV" : "";
 
-            index.addAndGet(1);
+                if (index.get() == 0 || !tives.get(index.get() - 1).getLeft().getMiddle().equals(s.getLeft().getMiddle()))
+                    tooltipComponents.add(Component.literal("§o§7" + (isNegatives ? Component.translatable("misc.cpd_stimulators.delay", s.getRight()).getString() : "") + Component.translatable("misc.cpd_stimulators.duration", s.getLeft().getMiddle()).getString()));
+                tooltipComponents.add(Component.literal("   " + (isNegatives ? "§c" : "§b") + Component.translatable("effect." + registeredName[0] + "." + registeredName[1]).getString() + " " + romanAmplifier));
+
+                index.addAndGet(1);
+            });
         });
 
         if (!isNegatives) tooltipComponents.add(Component.literal(""));
     }
 
-    public static void addEffects(Player player, List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> effects) {
+    public static void addEffects(Player player, List<Pair<Triple<String, Integer, Integer>, Integer>> effects) {
         effects.forEach((s) -> {
-            ModPlayerEvent.addEffect(player, s.getLeft().getLeft(), s.getLeft().getMiddle() * 20, s.getLeft().getRight());
-        });
-    }
+            String key = s.getLeft().getLeft();
+            int duration = s.getLeft().getMiddle() * 20;
+            int amplifier = s.getLeft().getRight();
 
-    public static void addSideEffects(Player player, List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> effects) {
-        effects.forEach((s) -> {
-            ModPlayerEvent.queueWork(s.getRight() * 40, () -> {
-                ModPlayerEvent.addEffect(player, s.getLeft().getLeft(), s.getLeft().getMiddle() * 20, s.getLeft().getRight());
+            Optional<Holder.Reference<MobEffect>> mobEffect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.parse(key));
+            mobEffect.ifPresent(mobEffectReference -> {
+                player.addEffect(new MobEffectInstance(mobEffectReference, duration, amplifier, false, false, false));
             });
         });
     }
 
-    public static void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag, List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> positives, List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> negatives) {
+    public static void addSideEffects(Player player, List<Pair<Triple<String, Integer, Integer>, Integer>> effects) {
+        effects.forEach((s) -> {
+            DeferredMobEffect.add(player, s.getRight() * 20 + "@" + s.getLeft().getLeft() + "@" + s.getLeft().getMiddle() * 20 + "@" + s.getLeft().getRight());
+        });
+    }
+
+    public static void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag, List<Pair<Triple<String, Integer, Integer>, Integer>> positives, List<Pair<Triple<String, Integer, Integer>, Integer>> negatives) {
         if (!Screen.hasShiftDown()) {
             // tooltipComponents.add(Component.literal(""));
             tooltipComponents.add(Component.translatable("misc.cpd_stimulators.press_shift"));

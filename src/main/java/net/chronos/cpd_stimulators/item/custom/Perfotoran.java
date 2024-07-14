@@ -1,16 +1,10 @@
 package net.chronos.cpd_stimulators.item.custom;
 
-import net.chronos.cpd_stimulators.effect.ModEffects;
-import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -26,19 +20,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Perfotoran extends Item {
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> positives = new ArrayList<>();
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> negatives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> positives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> negatives = new ArrayList<>();
 
     public Perfotoran(Properties properties) {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of(MobEffects.SATURATION,      60, 2), 0));
-        positives.add(Pair.of(Triple.of(MobEffects.REGENERATION,    15, 0), 0));
-        positives.add(Pair.of(Triple.of(ModEffects.ANTIDOTE,        60, 0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:saturation",             60, 2), 0));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",           15, 0), 0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:antidote",         60, 0), 0));
 
-        negatives.add(Pair.of(Triple.of(ModEffects.EXHAUSTION,      60, 1), 60));
-        negatives.add(Pair.of(Triple.of(MobEffects.HUNGER,          60, 0), 60));
+        negatives.add(Pair.of(Triple.of("cpd_stimulators:exhaustion",       60, 1), 60));
+        negatives.add(Pair.of(Triple.of("minecraft:hunger",                 60, 0), 60));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

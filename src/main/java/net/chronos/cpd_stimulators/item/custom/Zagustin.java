@@ -1,15 +1,10 @@
 package net.chronos.cpd_stimulators.item.custom;
 
-import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -25,19 +20,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Zagustin extends Item {
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> positives = new ArrayList<>();
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> negatives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> positives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> negatives = new ArrayList<>();
 
     public Zagustin(Properties properties) {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of(MobEffects.REGENERATION,    3,      2), 0));
-        positives.add(Pair.of(Triple.of(MobEffects.HEALTH_BOOST,    160,    1), 0));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",       3,      2), 0));
+        positives.add(Pair.of(Triple.of("minecraft:health_boost",       160,    1), 0));
 
-        negatives.add(Pair.of(Triple.of(MobEffects.HUNGER,          60,     0), 1));
-        negatives.add(Pair.of(Triple.of(MobEffects.HUNGER,          40,     0), 170));
-        negatives.add(Pair.of(Triple.of(MobEffects.CONFUSION,       20,     0), 170));
+        negatives.add(Pair.of(Triple.of("minecraft:hunger",             60,     0), 1));
+        negatives.add(Pair.of(Triple.of("minecraft:hunger",             40,     0), 170));
+        negatives.add(Pair.of(Triple.of("minecraft:nausea",             20,     0), 170));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

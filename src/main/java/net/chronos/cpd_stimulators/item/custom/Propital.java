@@ -1,16 +1,11 @@
 package net.chronos.cpd_stimulators.item.custom;
 
 import net.chronos.cpd_stimulators.effect.ModEffects;
-import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -26,20 +21,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Propital extends Item {
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> positives = new ArrayList<>();
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> negatives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> positives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> negatives = new ArrayList<>();
 
     public Propital(Properties properties) {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of(MobEffects.HEALTH_BOOST,            300,    0), 0));
-        positives.add(Pair.of(Triple.of(MobEffects.REGENERATION,            300,    1), 0));
-        positives.add(Pair.of(Triple.of(MobEffects.SATURATION,              300,    0), 0));
-        positives.add(Pair.of(Triple.of(ModEffects.STRESS_RESISTANCE,       240,    0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:health_boost",                   300,    0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",                   300,    1), 0));
+        positives.add(Pair.of(Triple.of("minecraft:saturation",                     300,    0), 0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",        240,    0), 0));
 
-        negatives.add(Pair.of(Triple.of(MobEffects.CONFUSION,               20,     0), 270));
-        negatives.add(Pair.of(Triple.of(MobEffects.DARKNESS,                30,     0), 270));
+        negatives.add(Pair.of(Triple.of("minecraft:nausea",                         20,     0), 270));
+        negatives.add(Pair.of(Triple.of("minecraft:darkness",                       30,     0), 270));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

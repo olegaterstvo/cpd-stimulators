@@ -1,17 +1,11 @@
 package net.chronos.cpd_stimulators.item.custom;
 
-import net.chronos.cpd_stimulators.effect.ModEffects;
-import net.chronos.cpd_stimulators.event.ModPlayerEvent;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -28,8 +22,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Obdolbos extends Item {
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> positives = new ArrayList<>();
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> negatives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> positives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> negatives = new ArrayList<>();
 
     public Obdolbos(Properties properties) {
         super(properties);
@@ -40,21 +34,21 @@ public class Obdolbos extends Item {
         Random rnd = new Random();
 
         // 25% of happening for each effect
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.MOVEMENT_SPEED, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.GLOWING, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.NIGHT_VISION, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_RESISTANCE, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.HERO_OF_THE_VILLAGE, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.REGENERATION, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.SATURATION, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.DIG_SPEED, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.DOLPHINS_GRACE, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.WATER_BREATHING, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.SLOW_FALLING, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.JUMP, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(MobEffects.INVISIBILITY, 600, 0), 0));
-        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of(ModEffects.STRESS_RESISTANCE, 600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:speed",                     600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:strength",                  600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:glowing",                   600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:night_vision",              600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:resistance",                600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:hero_of_the_village",       600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:regeneration",              600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:saturation",                600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:haste",                     600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:dolphins_grace",            600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:water_breathing",           600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:slow_falling",              600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:jump_boost",                600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("minecraft:invisibility",              600, 0), 0));
+        if (rnd.nextInt(4) == 0) positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",   600, 0), 0));
 
         ModItems.addEffects(player, positives);
     }
@@ -64,13 +58,13 @@ public class Obdolbos extends Item {
         Random rnd = new Random();
 
         // 25% of happening for each effect          pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.HUNGER, 600, 1), 1));
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.CONFUSION, 600, 0), 1));
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.POISON, 600, 0), 1));
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(ModEffects.VULNERABILITY, 600, 0), 1));
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(ModEffects.EXHAUSTION, 600, 0), 1));
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.DARKNESS, 600, 0), 1));
-        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of(MobEffects.UNLUCK, 600, 0), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of("minecraft:hunger",                600, 1), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of("minecraft:nausea",                600, 0), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of("minecraft:poison",                600, 0), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of("cpd_stimulators:vulnerability",   600, 0), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of("cpd_stimulators:exhaustion",      600, 0), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of("minecraft:darkness",              600, 0), 1));
+        if (rnd.nextInt(4) == 0) negatives.add(Pair.of(Triple.of("minecraft:unluck",                600, 0), 1));
 
         ModItems.addSideEffects(player, negatives);
     }

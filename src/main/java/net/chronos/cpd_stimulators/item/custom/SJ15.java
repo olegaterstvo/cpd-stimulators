@@ -27,30 +27,28 @@ import java.util.List;
 import java.util.Random;
 
 public class SJ15 extends Item {
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> positives = new ArrayList<>();
-    private static final List<Pair<Triple<Holder<MobEffect>, Integer, Integer>, Integer>> negatives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> positives = new ArrayList<>();
+    private static final List<Pair<Triple<String, Integer, Integer>, Integer>> negatives = new ArrayList<>();
 
     public SJ15(Properties properties) {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
         // TODO: weight limit +30%
-        positives.add(Pair.of(Triple.of(MobEffects.SATURATION,          900, 1), 0));
-        positives.add(Pair.of(Triple.of(MobEffects.DAMAGE_BOOST,        900, 1), 0));
-        positives.add(Pair.of(Triple.of(ModEffects.ANTIDOTE,            900, 0), 0));
-        positives.add(Pair.of(Triple.of(MobEffects.REGENERATION,        900, 0), 0));
-
+        positives.add(Pair.of(Triple.of("minecraft:saturation",                 900, 1), 0));
+        positives.add(Pair.of(Triple.of("minecraft:strength",                   900, 1), 0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:antidote",             900, 0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",               900, 0), 0));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }
     private void addSideEffects(Player player) {
         if (player.isLocalPlayer()) return;
+
         Random rnd = new Random();
         // 50% chance of instant death
         if (rnd.nextInt(2) == 0) {
-            negatives.add(Pair.of(Triple.of(MobEffects.HARM, 5, 10), 900));
-        } else {
-            negatives.clear();
+            negatives.add(Pair.of(Triple.of("minecraft:instant_damage", 5, 10), 900));
         }
 
         ModItems.addSideEffects(player, negatives);
