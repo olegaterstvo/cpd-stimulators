@@ -28,7 +28,7 @@ public class Mule extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("cpd_stimulators:increased_carrying_capacity",      900, 2), 0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:increased_carrying_capacity",      900, 3), 0));
 
         negatives.add(Pair.of(Triple.of("minecraft:poison",                                 20,  0), 1));
         negatives.add(Pair.of(Triple.of("minecraft:hunger",                                 900, 2), 1));
