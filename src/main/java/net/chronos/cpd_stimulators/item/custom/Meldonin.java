@@ -31,8 +31,8 @@ public class Meldonin extends Item {
         positives.add(Pair.of(Triple.of("minecraft:speed",              900,    1), 0));
         positives.add(Pair.of(Triple.of("minecraft:saturation",         900,    0), 0));
 
-        // TODO: -Hydration
         negatives.add(Pair.of(Triple.of("minecraft:hunger",             900,  0), 30));
+        negatives.add(Pair.of(Triple.of("toughasnails:thirst",          900,  0), 30));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

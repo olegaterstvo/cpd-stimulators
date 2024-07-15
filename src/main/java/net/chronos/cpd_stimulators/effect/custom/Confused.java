@@ -31,16 +31,16 @@ public class Confused extends MobEffect {
         event.getInput().leftImpulse = -event.getInput().leftImpulse;
     }
 
-    @SubscribeEvent
-    public static void onDamageTaken(LivingDamageEvent event) {
-        if (event.getEntity().getEffect(ModEffects.STRESS_RESISTANCE.getDelegate()) != null) return;
-
-        if (event.getSource().is(DamageTypes.EXPLOSION) || event.getSource().is(DamageTypes.PLAYER_EXPLOSION)){
-            Random rnd = new Random();
-            if (rnd.nextInt(4) != 0) return; //25% chance
-
-            int duration = rnd.nextInt(60, 140);
-            event.getEntity().addEffect(new MobEffectInstance(ModEffects.CONFUSED.getDelegate(), duration, 0));
-        }
-    }
+//    @SubscribeEvent
+//    public static void onDamageTaken(LivingDamageEvent event) {
+//        if (event.getEntity().getEffect(ModEffects.STRESS_RESISTANCE.getDelegate()) != null) return;
+//
+//        if (event.getSource().is(DamageTypes.EXPLOSION) || event.getSource().is(DamageTypes.PLAYER_EXPLOSION)){
+//            Random rnd = new Random();
+//            if (rnd.nextInt(4) != 0) return; //25% chance
+//
+//            int duration = rnd.nextInt(60, 140);
+//            event.getEntity().addEffect(new MobEffectInstance(ModEffects.CONFUSED.getDelegate(), duration, 0));
+//        }
+//    }
 }
