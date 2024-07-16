@@ -27,13 +27,14 @@ public class Adrenaline extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:speed",                          60, 0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:strength",                       60, 0), 0));
-        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",        60, 0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:regeneration",                   15, 2), 0));
+        positives.add(Pair.of(Triple.of("minecraft:speed",                          60, 0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:strength",                       60, 0), 1));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",        60, 0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",                   15, 2), 1));
 
         negatives.add(Pair.of(Triple.of("cpd_stimulators:vulnerability",            60,  0), 1));
         negatives.add(Pair.of(Triple.of("minecraft:hunger",                         30,  0), 50));
+        negatives.add(Pair.of(Triple.of("toughasnails:thirst",                      30,  0), 50));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

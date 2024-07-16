@@ -27,9 +27,9 @@ public class P22 extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:regeneration",           60, 2), 0));
-        positives.add(Pair.of(Triple.of("minecraft:health_boost",           60, 2), 0));
-        positives.add(Pair.of(Triple.of("minecraft:resistance",             60, 2), 0));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",           60, 2), 1));
+        positives.add(Pair.of(Triple.of("minecraft:health_boost",           60, 2), 1));
+        positives.add(Pair.of(Triple.of("minecraft:resistance",             60, 2), 1));
 
         negatives.add(Pair.of(Triple.of("minecraft:hunger",                 60, 0), 65));
         negatives.add(Pair.of(Triple.of("minecraft:slowness",               60, 0), 65));

@@ -27,7 +27,7 @@ public class SJ6 extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:saturation",             240,    1), 0));
+        positives.add(Pair.of(Triple.of("minecraft:saturation",             240,    1), 1));
 
         negatives.add(Pair.of(Triple.of("minecraft:nausea",                 20,     0), 100));
         negatives.add(Pair.of(Triple.of("minecraft:darkness",               40,     0), 100));

@@ -27,9 +27,9 @@ public class PNB extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:strength",                       40,     1), 0));
-        positives.add(Pair.of(Triple.of("minecraft:regeneration",                   40,     1), 0));
-        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",        40,     0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:strength",                       40,     1), 1));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",                   40,     1), 1));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",        40,     0), 1));
 
         negatives.add(Pair.of(Triple.of("cpd_stimulators:exhaustion",               180,    0), 41));
         negatives.add(Pair.of(Triple.of("cpd_stimulators:vulnerability",            180,    0), 41));

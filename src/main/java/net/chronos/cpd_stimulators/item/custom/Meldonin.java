@@ -27,9 +27,9 @@ public class Meldonin extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:strength",           900,    0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:speed",              900,    1), 0));
-        positives.add(Pair.of(Triple.of("minecraft:saturation",         900,    0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:strength",           900,    0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:speed",              900,    1), 1));
+        positives.add(Pair.of(Triple.of("minecraft:saturation",         900,    0), 1));
 
         negatives.add(Pair.of(Triple.of("minecraft:hunger",             900,  0), 30));
         negatives.add(Pair.of(Triple.of("toughasnails:thirst",          900,  0), 30));

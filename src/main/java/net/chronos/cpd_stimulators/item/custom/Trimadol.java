@@ -27,14 +27,14 @@ public class Trimadol extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:speed",                          180, 0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:strength",                       180, 0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:luck",                           180, 0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:resistance",                     180, 0), 0));
-//        positives.add(Pair.of(Triple.of(MobEffects.SATURATION,              180, 0), 0));
-        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",        180, 0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:speed",                          180, 0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:strength",                       180, 0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:luck",                           180, 0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:resistance",                     180, 0), 1));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",        180, 0), 1));
 
         negatives.add(Pair.of(Triple.of("minecraft:hunger",                         180, 0), 1));
+        negatives.add(Pair.of(Triple.of("toughasnails:thirst",                      180, 0), 1));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

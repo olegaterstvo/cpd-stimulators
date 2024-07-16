@@ -27,9 +27,9 @@ public class Perfotoran extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:saturation",             60, 2), 0));
-        positives.add(Pair.of(Triple.of("minecraft:regeneration",           15, 0), 0));
-        positives.add(Pair.of(Triple.of("cpd_stimulators:antidote",         60, 0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:saturation",             60, 2), 1));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",           15, 0), 1));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:antidote",         60, 0), 1));
 
         negatives.add(Pair.of(Triple.of("cpd_stimulators:exhaustion",       60, 1), 60));
         negatives.add(Pair.of(Triple.of("minecraft:hunger",                 60, 0), 60));

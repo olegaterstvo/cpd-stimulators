@@ -27,10 +27,10 @@ public class BTG3 extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:luck",               240,    2), 0));
-        positives.add(Pair.of(Triple.of("minecraft:night_vision",       240,    0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:strength",           240,    0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:saturation",         240,    0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:luck",               240,    2), 1));
+        positives.add(Pair.of(Triple.of("minecraft:night_vision",       240,    0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:strength",           240,    0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:saturation",         240,    0), 1));
 
         negatives.add(Pair.of(Triple.of("minecraft:hunger",             120,    0), 120));
         negatives.add(Pair.of(Triple.of("minecraft:nausea",             20,     0), 220));

@@ -27,11 +27,12 @@ public class SJ1 extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:speed",                      160,    1), 0));
-        positives.add(Pair.of(Triple.of("minecraft:strength",                   160,    1), 0));
-        positives.add(Pair.of(Triple.of("minecraft:resistance",                 160,    1), 0));
+        positives.add(Pair.of(Triple.of("minecraft:speed",                      160,    1), 1));
+        positives.add(Pair.of(Triple.of("minecraft:strength",                   160,    1), 1));
+        positives.add(Pair.of(Triple.of("minecraft:resistance",                 160,    1), 1));
 
         negatives.add(Pair.of(Triple.of("minecraft:hunger",                     200,    0), 100));
+        negatives.add(Pair.of(Triple.of("toughasnails:thirst",                  200,    0), 100));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

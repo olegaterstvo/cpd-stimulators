@@ -27,10 +27,11 @@ public class L1 extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:speed",          120,    0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:strength",       120,    1), 0));
+        positives.add(Pair.of(Triple.of("minecraft:speed",          120,    0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:strength",       120,    1), 1));
 
         negatives.add(Pair.of(Triple.of("minecraft:hunger",         60,     0), 1));
+        negatives.add(Pair.of(Triple.of("toughasnails:thirst",      60,     0), 1));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

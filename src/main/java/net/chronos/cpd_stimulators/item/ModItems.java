@@ -49,8 +49,16 @@ public class ModItems {
     public static final DeferredItem<Item> TRIMADOL_INJECTOR = registerItem("trimadol", () -> new Trimadol(new Item.Properties().stacksTo(maxStackSize)));
     public static final DeferredItem<Item> ZAGUSTIN_INJECTOR = registerItem("zagustin", () -> new Zagustin(new Item.Properties().stacksTo(maxStackSize)));
     public static final DeferredItem<Item> SJ15_INJECTOR = registerItem("sj15", () -> new SJ15(new Item.Properties().stacksTo(maxStackSize)));
+    public static final DeferredItem<Item> SJ9_INJECTOR = registerItem("sj9", () -> new SJ9(new Item.Properties().stacksTo(maxStackSize)));
+    public static final DeferredItem<Item> SJ12_INJECTOR = registerItem("sj12", () -> new SJ12(new Item.Properties().stacksTo(maxStackSize)));
 
     public static void register(IEventBus eventBus){
+        Optional<Holder.Reference<MobEffect>> mobEffect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.parse("toughasnails:thirst"));
+        if (mobEffect.isPresent()) {
+            registerItem("sj9", () -> new SJ9(new Item.Properties().stacksTo(maxStackSize)));
+            registerItem("sj12", () -> new SJ12(new Item.Properties().stacksTo(maxStackSize)));
+        }
+
         ITEMS.register(eventBus);
     }
     private static <T extends Item> DeferredItem<Item> registerItem(String name, Supplier<T> item){
@@ -88,7 +96,7 @@ public class ModItems {
                 String romanAmplifier = amplifier == 0 ? "" : amplifier == 1 ? "II" : amplifier == 2 ? "III" : amplifier == 3 ? "IV" : ""; // freaky
 
                 if (index.get() == 0 || !tives.get(index.get() - 1).getLeft().getMiddle().equals(s.getLeft().getMiddle()))
-                    tooltipComponents.add(Component.literal("§o§7" + (isNegatives ? Component.translatable("misc.cpd_stimulators.delay", delay_).getString() : "") + Component.translatable("misc.cpd_stimulators.duration", duration_).getString()));
+                    tooltipComponents.add(Component.literal("§o§7" + Component.translatable("misc.cpd_stimulators.delay", delay_).getString() + Component.translatable("misc.cpd_stimulators.duration", duration_).getString()));
                 tooltipComponents.add(Component.literal("   " + (isNegatives ? "§c" : "§b") + Component.translatable("effect." + registeredName[0] + "." + registeredName[1]).getString() + " " + romanAmplifier));
 
                 index.addAndGet(1);
@@ -100,14 +108,15 @@ public class ModItems {
 
     public static void addEffects(Player player, List<Pair<Triple<String, Integer, Integer>, Integer>> effects) {
         effects.forEach((s) -> {
-            String key = s.getLeft().getLeft();
-            int duration = s.getLeft().getMiddle() * 20;
-            int amplifier = s.getLeft().getRight();
-
-            Optional<Holder.Reference<MobEffect>> mobEffect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.parse(key));
-            mobEffect.ifPresent(mobEffectReference -> {
-                player.addEffect(new MobEffectInstance(mobEffectReference, duration, amplifier, false, false, false));
-            });
+//            String key = s.getLeft().getLeft();
+//            int duration = s.getLeft().getMiddle() * 20;
+//            int amplifier = s.getLeft().getRight();
+//
+//            Optional<Holder.Reference<MobEffect>> mobEffect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.parse(key));
+//            mobEffect.ifPresent(mobEffectReference -> {
+//                player.addEffect(new MobEffectInstance(mobEffectReference, duration, amplifier, false, false, false));
+//            });
+            DeferredMobEffect.add(player, s.getRight() * 20 + "@" + s.getLeft().getLeft() + "@" + s.getLeft().getMiddle() * 20 + "@" + s.getLeft().getRight());
         });
     }
 

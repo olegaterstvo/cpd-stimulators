@@ -34,11 +34,11 @@ public class SJ15 extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("cpd_stimulators:increased_carrying_capacity",      900, 1), 0));
-        positives.add(Pair.of(Triple.of("minecraft:saturation",                             900, 1), 0));
-        positives.add(Pair.of(Triple.of("minecraft:strength",                               900, 1), 0));
-        positives.add(Pair.of(Triple.of("cpd_stimulators:antidote",                         900, 0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:regeneration",                           900, 0), 0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:increased_carrying_capacity",      900, 1), 1));
+        positives.add(Pair.of(Triple.of("minecraft:saturation",                             900, 1), 1));
+        positives.add(Pair.of(Triple.of("minecraft:strength",                               900, 1), 1));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:antidote",                         900, 0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",                           900, 0), 1));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }
@@ -63,7 +63,7 @@ public class SJ15 extends Item {
         }
         ModItems.appendApplicableEffectToTooltip(tooltipComponents, positives, false);
 
-        tooltipComponents.add(Component.literal("§o§7" + (Component.translatable("misc.cpd_stimulators.delay", "15m").getString()) +":"));
+        tooltipComponents.add(Component.literal("§o§7" + (Component.translatable("misc.cpd_stimulators.delay", "15m").getString().split(";")[0] + ":")));
         tooltipComponents.add(Component.translatable("misc.cpd_stimulators.chance_of_death", Component.literal("50%")));
 
 //        ModItems.appendHoverText(stack, context, tooltipComponents, tooltipFlag, positives, negatives);

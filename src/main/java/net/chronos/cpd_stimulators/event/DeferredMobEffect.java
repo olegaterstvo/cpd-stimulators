@@ -21,8 +21,7 @@ public class DeferredMobEffect {
         for (int i = 0; i < 50; i++) {
             if (player.getPersistentData().contains("deferred_" + i)) continue;
             player.getPersistentData().putString("deferred_" + i, params);
-            // todo: remove logger
-            CPDStimulators.LOGGER.info(params);
+//            CPDStimulators.LOGGER.info(params);
             break;
         }
     }
@@ -33,14 +32,13 @@ public class DeferredMobEffect {
 
         for (int i = 0; i < event.getEntity().getPersistentData().size(); i++) {
             if (!event.getEntity().getPersistentData().contains("deferred_" + i)) continue;
-            String[] test = event.getEntity().getPersistentData().getString("deferred_" + i).split("@");
+            String[] effectData = event.getEntity().getPersistentData().getString("deferred_" + i).split("@");
 
-            int tick = Integer.parseInt(test[0]);
-            // todo: remove logger
-            CPDStimulators.LOGGER.info(i + ": (" + tick + ") " + event.getEntity().getPersistentData().getString("deferred_" + i) + "");
-            String effect = test[1];
-            int duration = Integer.parseInt(test[2]);
-            int amplifier = Integer.parseInt(test[3]);
+            int tick = Integer.parseInt(effectData[0]);
+//            CPDStimulators.LOGGER.info(i + ": (" + tick + ") " + event.getEntity().getPersistentData().getString("deferred_" + i) + "");
+            String effect = effectData[1];
+            int duration = Integer.parseInt(effectData[2]);
+            int amplifier = Integer.parseInt(effectData[3]);
 
             event.getEntity().getPersistentData().putString("deferred_" + i, tick - 1 + "@" + effect + "@" + duration + "@" + amplifier);
 

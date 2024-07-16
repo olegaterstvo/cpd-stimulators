@@ -18,25 +18,20 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-//import net.minecraft.sounds.SoundSource;
 
-
-public class ETGc extends Item {
+public class SJ12 extends Item {
     private static final List<Pair<Triple<String, Integer, Integer>, Integer>> positives = new ArrayList<>();
     private static final List<Pair<Triple<String, Integer, Integer>, Integer>> negatives = new ArrayList<>();
 
-    public ETGc(Properties properties) {
+    public SJ12(Properties properties) {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:regeneration",               60, 2), 1));
-        positives.add(Pair.of(Triple.of("minecraft:saturation",                 60, 1), 1));
-        positives.add(Pair.of(Triple.of("minecraft:fire_resistance",            90, 0), 1));
-        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",    30, 0), 1));
+        positives.add(Pair.of(Triple.of("toughasnails:internal_chill",      600,    0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:saturation",             600,    0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:night_vision",           600,    0), 1));
 
-        negatives.add(Pair.of(Triple.of("minecraft:hunger",                     20, 0), 95));
-        negatives.add(Pair.of(Triple.of("minecraft:slowness",                   60, 0), 95));
-        negatives.add(Pair.of(Triple.of("cpd_stimulators:exhaustion",           60, 0), 95));
+        negatives.add(Pair.of(Triple.of("toughasnails:internal_warmth",     300,    1), 606));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }
@@ -53,9 +48,6 @@ public class ETGc extends Item {
         if(hand == InteractionHand.MAIN_HAND) {
             player.playSound(ModSounds.APPLY_INJECTOR.get(), 1f,1f);
             player.startUsingItem(hand);
-
-//            level.playSound(player, player.getOnPos(), ModSounds.APPLY_INJECTOR.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
-
         }
         return super.use(level, player, hand);
     }

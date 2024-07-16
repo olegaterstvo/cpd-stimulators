@@ -27,11 +27,11 @@ public class Obdolbos2 extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("cpd_stimulators:increased_carrying_capacity",      900, 2), 0));
-        positives.add(Pair.of(Triple.of("minecraft:speed",                                  1800,   1), 0));
-        positives.add(Pair.of(Triple.of("minecraft:haste",                                  1800,   1), 0));
-        positives.add(Pair.of(Triple.of("minecraft:night_vision",                           1800,   0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:luck",                                   1800,   1), 0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:increased_carrying_capacity",      900,    2), 1));
+        positives.add(Pair.of(Triple.of("minecraft:speed",                                  1800,   1), 1));
+        positives.add(Pair.of(Triple.of("minecraft:haste",                                  1800,   1), 1));
+        positives.add(Pair.of(Triple.of("minecraft:night_vision",                           1800,   0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:luck",                                   1800,   1), 1));
 
         negatives.add(Pair.of(Triple.of("minecraft:hunger",                                 1800,   1), 1));
         negatives.add(Pair.of(Triple.of("minecraft:poison",                                 20,     0), 1));

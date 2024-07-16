@@ -28,10 +28,10 @@ public class Propital extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:health_boost",                   300,    0), 0));
-        positives.add(Pair.of(Triple.of("minecraft:regeneration",                   300,    1), 0));
-        positives.add(Pair.of(Triple.of("minecraft:saturation",                     300,    0), 0));
-        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",        240,    0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:health_boost",                   300,    0), 1));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",                   300,    1), 1));
+        positives.add(Pair.of(Triple.of("minecraft:saturation",                     300,    0), 1));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",        240,    0), 1));
 
         negatives.add(Pair.of(Triple.of("minecraft:nausea",                         20,     0), 270));
         negatives.add(Pair.of(Triple.of("minecraft:darkness",                       30,     0), 270));

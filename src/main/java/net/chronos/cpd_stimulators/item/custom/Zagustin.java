@@ -2,9 +2,13 @@ package net.chronos.cpd_stimulators.item.custom;
 
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -18,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Zagustin extends Item {
     private static final List<Pair<Triple<String, Integer, Integer>, Integer>> positives = new ArrayList<>();
@@ -27,12 +32,18 @@ public class Zagustin extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:regeneration",       3,      2), 0));
-        positives.add(Pair.of(Triple.of("minecraft:health_boost",       160,    1), 0));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",       3,      2), 1));
+        positives.add(Pair.of(Triple.of("minecraft:health_boost",       160,    1), 1));
 
-        negatives.add(Pair.of(Triple.of("minecraft:hunger",             60,     0), 1));
-        negatives.add(Pair.of(Triple.of("minecraft:hunger",             40,     0), 170));
+        negatives.add(Pair.of(Triple.of("minecraft:hunger",             180,    0), 1));
         negatives.add(Pair.of(Triple.of("minecraft:nausea",             20,     0), 170));
+
+        Optional<Holder.Reference<MobEffect>> mobEffect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.parse("toughasnails:thirst"));
+        if (mobEffect.isPresent()) {
+            negatives.add(Pair.of(Triple.of("toughasnails:thirst",              40, 0), 170));
+        } else {
+            negatives.add(Pair.of(Triple.of("minecraft:hunger",                 40, 0), 170));
+        }
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }

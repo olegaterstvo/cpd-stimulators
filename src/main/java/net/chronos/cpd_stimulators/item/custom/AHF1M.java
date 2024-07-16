@@ -2,9 +2,13 @@ package net.chronos.cpd_stimulators.item.custom;
 
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -18,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class AHF1M extends Item {
     private static final List<Pair<Triple<String, Integer, Integer>, Integer>> positives = new ArrayList<>();
@@ -27,9 +32,14 @@ public class AHF1M extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:regeneration",           60, 0), 0));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",               60, 0), 1));
 
-        negatives.add(Pair.of(Triple.of("minecraft:hunger",                 60, 0), 60));
+        Optional<Holder.Reference<MobEffect>> mobEffect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.parse("toughasnails:thirst"));
+        if (mobEffect.isPresent()) {
+            negatives.add(Pair.of(Triple.of("toughasnails:thirst",              120, 0), 1));
+        } else {
+            negatives.add(Pair.of(Triple.of("minecraft:hunger",                 120, 0), 1));
+        }
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }
