@@ -1,0 +1,8 @@
+{
+  "values": [
+    {
+      "id": "cpd_stimulators:redstone_poi",
+      "required": false
+    }
+  ]
+}

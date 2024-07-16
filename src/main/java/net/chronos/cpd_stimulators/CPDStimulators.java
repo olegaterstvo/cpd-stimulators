@@ -5,6 +5,7 @@ import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.chronos.cpd_stimulators.item.ModItemGroup;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
+import net.chronos.cpd_stimulators.villager.ModVillagers;
 import net.neoforged.fml.config.ModConfig;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
@@ -25,5 +26,6 @@ public class CPDStimulators {
         ModItems.register(eventBus);
         ModEffects.register(eventBus);
         ModSounds.register(eventBus);
+        ModVillagers.register(eventBus);
     }
 }
