@@ -2,7 +2,6 @@ package net.chronos.cpd_stimulators.event;
 
 import net.chronos.cpd_stimulators.CPDStimulators;
 import net.chronos.cpd_stimulators.effect.ModEffects;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;

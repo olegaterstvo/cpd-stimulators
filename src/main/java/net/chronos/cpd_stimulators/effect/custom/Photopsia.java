@@ -1,12 +1,10 @@
 package net.chronos.cpd_stimulators.effect.custom;
 
-import net.chronos.cpd_stimulators.CPDStimulators;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.neoforged.fml.common.EventBusSubscriber;
 
 public class Photopsia extends MobEffect {
     public Photopsia(MobEffectCategory category, int color) {

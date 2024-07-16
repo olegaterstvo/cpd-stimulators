@@ -1,16 +1,11 @@
 package net.chronos.cpd_stimulators.item.custom;
 
-import net.chronos.cpd_stimulators.CPDStimulators;
-import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;

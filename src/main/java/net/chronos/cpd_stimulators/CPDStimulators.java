@@ -1,9 +1,11 @@
 package net.chronos.cpd_stimulators;
 
+import net.chronos.cpd_stimulators.config.ModCommonConfigs;
 import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.chronos.cpd_stimulators.item.ModItemGroup;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
+import net.neoforged.fml.config.ModConfig;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
@@ -17,6 +19,8 @@ public class CPDStimulators {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public CPDStimulators(IEventBus eventBus, ModContainer modContainer){
+        modContainer.registerConfig(ModConfig.Type.COMMON, ModCommonConfigs.SPEC,"CPDstimulators-common.toml");
+
         ModItemGroup.register(eventBus);
         ModItems.register(eventBus);
         ModEffects.register(eventBus);

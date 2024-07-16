@@ -14,7 +14,7 @@ import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
 public class Overload extends MobEffect {
     public Overload(MobEffectCategory category, int color) { super(category, color); }
 
-    private static float MAX_WEIGHT = 27648f;
+    public static float MAX_WEIGHT = 27648f;
     public static float STOP_SPRINTING_THRESHOLD = 13824f;
 
     @SubscribeEvent
@@ -35,7 +35,10 @@ public class Overload extends MobEffect {
         float overload_amplifier = event.getEntity().getPersistentData().getFloat("overload_amplifier");
         float f = (float) Math.pow(overload_amplifier / modifier, 5);
 
-        event.getInput().forwardImpulse = event.getInput().forwardImpulse * (1 - f);
-        event.getInput().leftImpulse = event.getInput().leftImpulse * (1 - f);
+        float newForwardImpulse = event.getInput().forwardImpulse * (1 - f);
+        float newLeftImpulse = event.getInput().leftImpulse * (1 - f);
+
+        event.getInput().forwardImpulse = (newForwardImpulse > 0 && event.getInput().forwardImpulse > 0) || (newForwardImpulse < 0 && event.getInput().forwardImpulse < 0) ? newForwardImpulse : 0;
+        event.getInput().leftImpulse = (newLeftImpulse > 0 && event.getInput().leftImpulse > 0) || (newLeftImpulse < 0 && event.getInput().leftImpulse < 0) ? newLeftImpulse : 0;
     }
 }

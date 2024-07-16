@@ -1,6 +1,5 @@
 package net.chronos.cpd_stimulators.command;
 
-
 import net.chronos.cpd_stimulators.CPDStimulators;
 import net.chronos.cpd_stimulators.procedure.ClearDeferredEffects;
 import net.minecraft.commands.Commands;
