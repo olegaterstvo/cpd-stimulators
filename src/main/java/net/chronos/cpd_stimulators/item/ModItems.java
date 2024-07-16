@@ -47,14 +47,10 @@ public class ModItems {
     public static final DeferredItem<Item> TRIMADOL_INJECTOR = registerItem("trimadol", () -> new Trimadol(new Item.Properties().stacksTo(maxStackSize)));
     public static final DeferredItem<Item> ZAGUSTIN_INJECTOR = registerItem("zagustin", () -> new Zagustin(new Item.Properties().stacksTo(maxStackSize)));
     public static final DeferredItem<Item> SJ15_INJECTOR = registerItem("sj15", () -> new SJ15(new Item.Properties().stacksTo(maxStackSize)));
+    public static final DeferredItem<Item> SJ9_INJECTOR = registerItem("sj9", () -> new SJ9(new Item.Properties().stacksTo(maxStackSize)));
+    public static final DeferredItem<Item> SJ12_INJECTOR = registerItem("sj12", () -> new SJ12(new Item.Properties().stacksTo(maxStackSize)));
 
     public static void register(IEventBus eventBus){
-        Optional<Holder.Reference<MobEffect>> mobEffect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.parse("toughasnails:thirst"));
-        if (mobEffect.isPresent()) {
-            registerItem("sj9", () -> new SJ9(new Item.Properties().stacksTo(maxStackSize)));
-            registerItem("sj12", () -> new SJ12(new Item.Properties().stacksTo(maxStackSize)));
-        }
-
         ITEMS.register(eventBus);
     }
     private static <T extends Item> DeferredItem<Item> registerItem(String name, Supplier<T> item){
