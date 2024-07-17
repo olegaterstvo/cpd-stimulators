@@ -3,11 +3,11 @@ package net.chronos.cpd_stimulators.entity.custom;
 import net.chronos.cpd_stimulators.CPDStimulators;
 import net.chronos.cpd_stimulators.entity.ModEntities;
 import net.chronos.cpd_stimulators.sound.ModSounds;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,8 +23,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -111,8 +109,19 @@ public class Sanitar extends Monster {
     }
 
     @Override
+    public Level level() {
+        return super.level();
+    }
+
+    @Override
     public ItemStack getMainHandItem() {
         ItemStack crossbow = new ItemStack(Items.CROSSBOW);
+
+        RegistryAccess registryAccess = level().registryAccess();
+        HolderLookup.RegistryLookup<Enchantment> lookup = registryAccess.lookupOrThrow(Registries.ENCHANTMENT);
+        Holder.Reference<Enchantment> enchantment = lookup.get(Enchantments.MULTISHOT).get();
+
+        crossbow.enchant(enchantment ,1);
         return crossbow;
     }
 }
