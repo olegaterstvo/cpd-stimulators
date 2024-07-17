@@ -47,6 +47,7 @@
   "misc.cpd_stimulators.s": "s",
 
   "entity.minecraft.villager.cpd_stimulators.therapist": "Therapist",
+  "entity.cpd_stimulators.sanitar": "Sanitar",
 
   "itemGroup.cpd_stimulators": "CPD: Stimulators"
 }

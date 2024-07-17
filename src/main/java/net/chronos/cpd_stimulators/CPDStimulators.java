@@ -2,6 +2,7 @@ package net.chronos.cpd_stimulators;
 
 import net.chronos.cpd_stimulators.config.ModCommonConfigs;
 import net.chronos.cpd_stimulators.effect.ModEffects;
+import net.chronos.cpd_stimulators.entity.ModEntities;
 import net.chronos.cpd_stimulators.item.ModItemGroup;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.sound.ModSounds;
@@ -27,5 +28,6 @@ public class CPDStimulators {
         ModEffects.register(eventBus);
         ModSounds.register(eventBus);
         ModVillagers.register(eventBus);
+        ModEntities.register(eventBus);
     }
 }

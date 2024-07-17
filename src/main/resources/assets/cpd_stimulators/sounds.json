@@ -4,5 +4,96 @@
     "sounds": [
       "cpd_stimulators:apply_injector"
     ]
+  },
+  "sanitar_hurt": {
+    "subtitle": "sounds.cpd_stimulators.sanitar_hurt",
+    "sounds": [
+      {
+        "name": "cpd_stimulators:sanitar/breath_pain_1",
+        "weight": 60
+      },
+      {
+        "name": "cpd_stimulators:sanitar/breath_pain_2",
+        "weight": 60
+      },
+      {
+        "name": "cpd_stimulators:sanitar/heal_1",
+        "weight": 1
+      },
+      {
+        "name": "cpd_stimulators:sanitar/heal_2",
+        "weight": 1
+      },
+      {
+        "name": "cpd_stimulators:sanitar/heal_3",
+        "weight": 1
+      },
+      {
+        "name": "cpd_stimulators:sanitar/heal_4",
+        "weight": 1
+      },
+      {
+        "name": "cpd_stimulators:sanitar/help_1",
+        "weight": 1
+      },
+      {
+        "name": "cpd_stimulators:sanitar/help_2",
+        "weight": 1
+      },
+      {
+        "name": "cpd_stimulators:sanitar/help_3",
+        "weight": 1
+      }
+    ]
+  },
+  "sanitar_death": {
+    "subtitle": "sounds.cpd_stimulators.sanitar_death",
+    "sounds": [
+      "cpd_stimulators:sanitar/breath_death_1",
+      "cpd_stimulators:sanitar/breath_death_2",
+      "cpd_stimulators:sanitar/breath_death_3",
+      "cpd_stimulators:sanitar/breath_death_4",
+      "cpd_stimulators:sanitar/breath_death_5",
+      "cpd_stimulators:sanitar/breath_death_6",
+      "cpd_stimulators:sanitar/hurt_near_death_1",
+      "cpd_stimulators:sanitar/hurt_near_death_2"
+    ]
+  },
+  "sanitar_mutter": {
+    "subtitle": "sounds.cpd_stimulators.sanitar_mutter",
+    "sounds": [
+      "cpd_stimulators:sanitar/mutter_1",
+      "cpd_stimulators:sanitar/mutter_2",
+      "cpd_stimulators:sanitar/mutter_3",
+      "cpd_stimulators:sanitar/mutter_4",
+      "cpd_stimulators:sanitar/mutter_5",
+      "cpd_stimulators:sanitar/mutter_6",
+      "cpd_stimulators:sanitar/mutter_7",
+      "cpd_stimulators:sanitar/mutter_8",
+      "cpd_stimulators:sanitar/mutter_9",
+      "cpd_stimulators:sanitar/mutter_10",
+      "cpd_stimulators:sanitar/mutter_11",
+      "cpd_stimulators:sanitar/mutter_12",
+      "cpd_stimulators:sanitar/mutter_13",
+      "cpd_stimulators:sanitar/mutter_14",
+      "cpd_stimulators:sanitar/mutter_15",
+      "cpd_stimulators:sanitar/mutter_16",
+      "cpd_stimulators:sanitar/mutter_17",
+      "cpd_stimulators:sanitar/mutter_18",
+      "cpd_stimulators:sanitar/mutter_19",
+      "cpd_stimulators:sanitar/mutter_20",
+      "cpd_stimulators:sanitar/mutter_21",
+      "cpd_stimulators:sanitar/mutter_22",
+      "cpd_stimulators:sanitar/mutter_23",
+      "cpd_stimulators:sanitar/mutter_24",
+      "cpd_stimulators:sanitar/mutter_25",
+      "cpd_stimulators:sanitar/mutter_26",
+      "cpd_stimulators:sanitar/mutter_27",
+      "cpd_stimulators:sanitar/mutter_28",
+      "cpd_stimulators:sanitar/mutter_29",
+      "cpd_stimulators:sanitar/mutter_30",
+      "cpd_stimulators:sanitar/mutter_31",
+      "cpd_stimulators:sanitar/mutter_32"
+    ]
   }
 }
