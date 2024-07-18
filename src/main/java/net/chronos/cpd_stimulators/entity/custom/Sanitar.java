@@ -3,13 +3,9 @@ package net.chronos.cpd_stimulators.entity.custom;
 import net.chronos.cpd_stimulators.CPDStimulators;
 import net.chronos.cpd_stimulators.entity.ModEntities;
 import net.chronos.cpd_stimulators.sound.ModSounds;
-import net.minecraft.client.particle.FireworkParticles;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -59,7 +55,7 @@ public class Sanitar extends Monster implements CrossbowAttackMob {
     protected void registerGoals() {
         super.registerGoals();
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 1, true, false, living -> living.hasEffect(MobEffects.BAD_OMEN)));
-        this.goalSelector.addGoal(2, new RangedCrossbowAttackGoal(this, 5.0d, 16.0f));
+        this.goalSelector.addGoal(2, new RangedCrossbowAttackGoal<>(this, 5.0d, 16.0f));
         this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1));
         this.targetSelector.addGoal(4, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
@@ -128,6 +124,7 @@ public class Sanitar extends Monster implements CrossbowAttackMob {
         return super.level();
     }
 
+    @SuppressWarnings("deprecation")
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
