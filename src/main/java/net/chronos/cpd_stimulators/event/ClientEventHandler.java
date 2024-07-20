@@ -8,8 +8,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
@@ -25,7 +23,6 @@ import java.util.stream.Stream;
 import static net.chronos.cpd_stimulators.effect.custom.Overload.STOP_SPRINTING_THRESHOLD;
 
 @EventBusSubscriber(modid = CPDStimulators.MOD_ID)
-@OnlyIn(Dist.CLIENT)
 public class ClientEventHandler {
     private enum Weights {
         DebugStickItem(1000f, false),
@@ -139,6 +136,8 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public static void onInventoryUpdate(PlayerTickEvent.Post event) {
+        if (!event.getEntity().isLocalPlayer()) return;
+
         int c = 0; for (ItemStack item : event.getEntity().getInventory().items) c += item.getCount();
 
         if (event.getEntity().getPersistentData().getLong("size") == c) return;
@@ -178,6 +177,9 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
+        if (event.getEntity() == null) return;
+        if (!event.getEntity().isLocalPlayer()) return;
+
         String weight;
         String coloredWeight;
 

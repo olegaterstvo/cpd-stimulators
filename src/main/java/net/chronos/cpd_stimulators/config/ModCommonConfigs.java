@@ -39,8 +39,8 @@ public class ModCommonConfigs {
         CPDStimulators.LOGGER.info("COMMON SETUP");
 
         // Configs are not available during mod initialisation, thus overriding values on common setup
-        Overload.MAX_WEIGHT = OVERLOAD_MAX_WEIGHT.get();
-        Overload.STOP_SPRINTING_THRESHOLD = OVERLOAD_STOP_SPRINTING_THRESHOLD.get();
+        Overload.MAX_WEIGHT = OVERLOAD_MAX_WEIGHT.get().floatValue();
+        Overload.STOP_SPRINTING_THRESHOLD = OVERLOAD_STOP_SPRINTING_THRESHOLD.get().floatValue();
     }
 }
 

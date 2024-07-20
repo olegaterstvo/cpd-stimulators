@@ -4,8 +4,6 @@ import net.chronos.cpd_stimulators.CPDStimulators;
 import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
@@ -18,8 +16,8 @@ public class Overload extends MobEffect {
     public static float STOP_SPRINTING_THRESHOLD = 13824f;
 
     @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
     public static void onMovementInputUpdate(MovementInputUpdateEvent event) {
+        if (!event.getEntity().isLocalPlayer()) return;
         if (!event.getEntity().hasEffect(ModEffects.OVERLOAD.getDelegate())) return;
 
         float modifier = MAX_WEIGHT;
