@@ -30,11 +30,11 @@ import net.minecraft.core.BlockPos;
 
 @EventBusSubscriber(modid = CPDStimulators.MOD_ID)
 public class ServerStartEventHandler {
-	private static final boolean ANNOUNCEMENT = false;
-	private static final int ANNOUNCEMENT_X_MINUTES_BEFORE = 1;
-    private static final long EVENT_EVERY_X_MINUTES = 1;
-    private static final int WITHIN_RADIUS_OF_POLYGON = 200;
-    private static final int WITHIN_RADIUS_OF_POINT = 50;
+	public static boolean ANNOUNCEMENT = false;
+	public static int ANNOUNCEMENT_X_MINUTES_BEFORE = 1;
+	public static int EVENT_EVERY_X_MINUTES = 1;
+	public static int WITHIN_RADIUS_OF_POLYGON = 200;
+	public static int WITHIN_RADIUS_OF_POINT = 50;
 	private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     @SubscribeEvent
@@ -51,7 +51,7 @@ public class ServerStartEventHandler {
 	// 
     private static void scheduleTask(ServerStartedEvent event) {
         long currentTime = System.currentTimeMillis();
-        long nextExecutionTime = ((currentTime / (EVENT_EVERY_X_MINUTES * 60 * 1000)) + 1) * (EVENT_EVERY_X_MINUTES * 60 * 1000);
+        long nextExecutionTime = ((currentTime / ((long) EVENT_EVERY_X_MINUTES * 60 * 1000)) + 1) * ((long) EVENT_EVERY_X_MINUTES * 60 * 1000);
         long delay = nextExecutionTime - currentTime;
 
         scheduler.schedule(() -> {
@@ -60,7 +60,7 @@ public class ServerStartEventHandler {
         }, delay, TimeUnit.MILLISECONDS);
 
 		if (ANNOUNCEMENT) {
-			long announcementDelay = delay - ANNOUNCEMENT_X_MINUTES_BEFORE * 60 * 1000;
+			long announcementDelay = delay - (long) ANNOUNCEMENT_X_MINUTES_BEFORE * 60 * 1000;
 			if (announcementDelay > 0) {
 				scheduler.schedule(() -> {
 					PlayerChatMessage chatMessage = PlayerChatMessage.system("скоро сундук");
@@ -92,7 +92,7 @@ public class ServerStartEventHandler {
 
 		int px = centerX + Mth.nextInt(RandomSource.create(), 1, WITHIN_RADIUS_OF_POINT);
 		int pz = centerZ + Mth.nextInt(RandomSource.create(), 1, WITHIN_RADIUS_OF_POINT);
-		int py = world.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, px, pz);
+		int py = world.getHeight(Heightmap.Types.OCEAN_FLOOR, px, pz);
 
 		BlockPos pos = BlockPos.containing(Double.valueOf(px), Double.valueOf(py), Double.valueOf(pz));
 		world.setBlock(pos, Blocks.CHEST.defaultBlockState(), 3);
