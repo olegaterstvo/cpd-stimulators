@@ -13,6 +13,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.util.RandomSource;
@@ -26,6 +27,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.chronos.cpd_stimulators.CPDStimulators;
 import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 
 @EventBusSubscriber(modid = CPDStimulators.MOD_ID)
@@ -92,28 +94,39 @@ public class ServerStartEventHandler {
 
 		int px = centerX + Mth.nextInt(RandomSource.create(), 1, WITHIN_RADIUS_OF_POINT);
 		int pz = centerZ + Mth.nextInt(RandomSource.create(), 1, WITHIN_RADIUS_OF_POINT);
-		int py = world.getHeight(Heightmap.Types.OCEAN_FLOOR, px, pz);
+		
+		// CommandSourceStack commandSourceStack = event.getServer().createCommandSourceStack();
+		// event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/chunky center " + px + " " + pz);
+		// event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/chunky shape square");
+		// event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/chunky radius 1c");
+		// event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/chunky start");
+		
+		CommandSourceStack commandSourceStack = event.getServer().createCommandSourceStack();
+		event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/forceload add " + px + " " + pz + " " + (px + 16) + " " + (pz + 16));
+		
+		scheduler.schedule(() -> {
+			int py = world.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, px, pz);
+            BlockPos pos = BlockPos.containing(Double.valueOf(px), Double.valueOf(py), Double.valueOf(pz));
+			world.setBlock(pos, Blocks.CHEST.defaultBlockState(), 3);
 
-		BlockPos pos = BlockPos.containing(Double.valueOf(px), Double.valueOf(py), Double.valueOf(pz));
-		world.setBlock(pos, Blocks.CHEST.defaultBlockState(), 3);
+			BlockState blockState = world.getBlockState(pos);
+			if (blockState.is(Blocks.CHEST)){
+				CPDStimulators.LOGGER.info("CHEST");
+				ChestBlockEntity chestBlockEntity = new ChestBlockEntity(pos, blockState);
+				chestBlockEntity.setItem(0, new ItemStack(ModItems.ADRENALINE_INJECTOR.get(), 4));
+				world.setBlockEntity(chestBlockEntity);
+			}
 
-		BlockState blockState = world.getBlockState(pos);
-		if (blockState.is(Blocks.CHEST)){
-			CPDStimulators.LOGGER.info("CHEST");
-			ChestBlockEntity chestBlockEntity = new ChestBlockEntity(pos, blockState);
-			chestBlockEntity.setItem(0, new ItemStack(ModItems.ADRENALINE_INJECTOR.get(), 4));
-			world.setBlockEntity(chestBlockEntity);
-		}
+			if (!world.isClientSide() && world.getServer() != null) {
+				world.getServer().getPlayerList().broadcastSystemMessage(Component.literal(px + " " + py + " " + pz), false);
+				Component clickableCoords = Component.translatable("misc.cpd_stimulators.airdrop")
+					.append(Component.literal(" " + "[" + centerX + ", " + centerZ + "]")
+					.withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + pos.getX() + " " + pos.getY() + " " + pos.getZ())).withColor(ChatFormatting.GREEN)))
+					.append(Component.literal(" (?)")
+					.withStyle(style -> style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("misc.cpd_stimulators.airdrop_radius", WITHIN_RADIUS_OF_POINT))).withColor(ChatFormatting.BOLD)));
 
-		if (!world.isClientSide() && world.getServer() != null) {
-			world.getServer().getPlayerList().broadcastSystemMessage(Component.literal(px + " " + py + " " + pz), false);
-			Component clickableCoords = Component.translatable("misc.cpd_stimulators.airdrop")
-				.append(Component.literal(" [" + centerX + " " + centerZ + "]")
-				.withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + pos.getX() + " " + pos.getY() + " " + pos.getZ())).withColor(ChatFormatting.GREEN)))
-				.append(Component.literal(" (?)")
-				.withStyle(style -> style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("misc.cpd_stimulators.airdrop_radius", WITHIN_RADIUS_OF_POINT))).withColor(ChatFormatting.BOLD)));
-
-			event.getServer().getPlayerList().broadcastSystemMessage(clickableCoords, false);
-		}
+				event.getServer().getPlayerList().broadcastSystemMessage(clickableCoords, false);
+			}
+        }, 2, TimeUnit.SECONDS);
 	}
 }
