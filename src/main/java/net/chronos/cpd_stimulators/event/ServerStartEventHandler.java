@@ -5,15 +5,15 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import net.chronos.cpd_stimulators.item.ModItems;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.Mth;
@@ -97,16 +97,13 @@ public class ServerStartEventHandler {
 		BlockPos pos = BlockPos.containing(Double.valueOf(px), Double.valueOf(py), Double.valueOf(pz));
 		world.setBlock(pos, Blocks.CHEST.defaultBlockState(), 3);
 
-		// 
-		// Надо как-то пофиксить! не работает! не видит сундук в координатах.
-		// 
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof ChestBlockEntity) {
-			ChestBlockEntity chest = (ChestBlockEntity) blockEntity;
-			chest.setItem(0, new ItemStack(Items.DIAMOND, 5));
+		BlockState blockState = world.getBlockState(pos);
+		if (blockState.is(Blocks.CHEST)){
+			CPDStimulators.LOGGER.info("CHEST");
+			ChestBlockEntity chestBlockEntity = new ChestBlockEntity(pos, blockState);
+			chestBlockEntity.setItem(0, new ItemStack(ModItems.ADRENALINE_INJECTOR.get(), 4));
+			world.setBlockEntity(chestBlockEntity);
 		}
-		// 
-		// 
 
 		if (!world.isClientSide() && world.getServer() != null) {
 			world.getServer().getPlayerList().broadcastSystemMessage(Component.literal(px + " " + py + " " + pz), false);
