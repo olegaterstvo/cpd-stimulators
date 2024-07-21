@@ -42,6 +42,9 @@
   "misc.cpd_stimulators.press_shift": "§o§9Shift§r§7 for more information",
   "misc.cpd_stimulators.press_ctrl": "§o§9Ctrl§r§7 for legacy description",
   "misc.cpd_stimulators.chance_of_death": "   %s Chance of §cInstant Death",
+  "misc.cpd_stimulators.teleport_to": "Teleport to",
+  "misc.cpd_stimulators.airdrop": "The airdrop landed somewhere near ",
+  "misc.cpd_stimulators.airdrop_radius": "Within a %1$s-block radius of these coordinates",
 
   "misc.cpd_stimulators.m": "m",
   "misc.cpd_stimulators.s": "s",
