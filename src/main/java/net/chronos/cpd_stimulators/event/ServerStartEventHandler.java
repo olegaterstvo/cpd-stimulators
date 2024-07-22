@@ -1,12 +1,15 @@
 package net.chronos.cpd_stimulators.event;
 
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.item.ModItems;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -39,13 +42,6 @@ public class ServerStartEventHandler {
         scheduleTask(event);
     }
 
-	// 
-	// КАЖДУЮ МИНУТУ СПАВНИТ СУНДУК 
-	// 
-	// 
-	// 
-	// 
-	// 
     private static void scheduleTask(ServerStartedEvent event) {
         long currentTime = System.currentTimeMillis();
         long nextExecutionTime = ((currentTime / ((long) ModServerConfigs.AIRDROP_EVENT_EVERY_X_MINUTES.get() * 60 * 1000)) + 1) * ((long) ModServerConfigs.AIRDROP_EVENT_EVERY_X_MINUTES.get() * 60 * 1000);
@@ -90,38 +86,44 @@ public class ServerStartEventHandler {
 		int px = centerX + Mth.nextInt(RandomSource.create(), 1, ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get());
 		int pz = centerZ + Mth.nextInt(RandomSource.create(), 1, ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get());
 		
-		// CommandSourceStack commandSourceStack = event.getServer().createCommandSourceStack();
-		// event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/chunky center " + px + " " + pz);
-		// event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/chunky shape square");
-		// event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/chunky radius 1c");
-		// event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/chunky start");
-		
 		CommandSourceStack commandSourceStack = event.getServer().createCommandSourceStack();
-		event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/forceload add " + px + " " + pz + " " + (px + 16) + " " + (pz + 16));
-		
-		scheduler.schedule(() -> {
-			int py = world.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, px, pz);
-            BlockPos pos = BlockPos.containing(Double.valueOf(px), Double.valueOf(py), Double.valueOf(pz));
-			world.setBlock(pos, Blocks.CHEST.defaultBlockState(), 3);
+//		event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/forceload add " + px + " " + pz + " " + (px + 16) + " " + (pz + 16));
+		event.getServer().overworld().setChunkForced((int) (px / 16), (int) (pz / 16), true);
 
-			BlockState blockState = world.getBlockState(pos);
-			if (blockState.is(Blocks.CHEST)){
-				CPDStimulators.LOGGER.info("CHEST");
-				ChestBlockEntity chestBlockEntity = new ChestBlockEntity(pos, blockState);
-				chestBlockEntity.setItem(0, new ItemStack(ModItems.ADRENALINE_INJECTOR.get(), 4));
-				world.setBlockEntity(chestBlockEntity);
+		int py = world.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, px, pz);
+		BlockPos pos = BlockPos.containing(Double.valueOf(px), Double.valueOf(py), Double.valueOf(pz));
+		world.setBlock(pos, Blocks.CHEST.defaultBlockState(), 3);
+		CPDStimulators.LOGGER.info("AIRDROP at " + pos);
+
+		BlockState blockState = world.getBlockState(pos);
+		if (blockState.is(Blocks.CHEST)) {
+			ChestBlockEntity chestBlockEntity = new ChestBlockEntity(pos, blockState);
+			int c = 0;
+
+			for (int i = 0; i < ModItems.ITEMS.getEntries().stream().toList().size(); i++) {
+				double changeToSpawnInjector = Math.random();
+
+				if (changeToSpawnInjector < .15) {
+					int t2 = new Random().nextInt(1, ModItems.ADRENALINE_INJECTOR.get().getDefaultMaxStackSize());
+					chestBlockEntity.setItem(c, new ItemStack(ModItems.ITEMS.getEntries().stream().toList().get(i), t2));
+					c++;
+				}
 			}
 
-			if (!world.isClientSide() && world.getServer() != null) {
-				world.getServer().getPlayerList().broadcastSystemMessage(Component.literal(px + " " + py + " " + pz), false);
-				Component clickableCoords = Component.translatable("misc.cpd_stimulators.airdrop")
-					.append(Component.literal(" " + "[" + centerX + ", " + centerZ + "]")
-					.withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + pos.getX() + " " + pos.getY() + " " + pos.getZ())).withColor(ChatFormatting.GREEN)))
-					.append(Component.literal(" (?)")
-					.withStyle(style -> style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("misc.cpd_stimulators.airdrop_radius", ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get()))).withColor(ChatFormatting.BOLD)));
+//			int index = new Random().nextInt(0, ModItems.ITEMS.getEntries().stream().toList().size());
+//			chestBlockEntity.setItem(0, new ItemStack(ModItems.ITEMS.getEntries().stream().toList().get(index), 4));
+			world.setBlockEntity(chestBlockEntity);
+		}
 
-				event.getServer().getPlayerList().broadcastSystemMessage(clickableCoords, false);
-			}
-        }, 2, TimeUnit.SECONDS);
+		if (!world.isClientSide() && world.getServer() != null) {
+			world.getServer().getPlayerList().broadcastSystemMessage(Component.literal(px + " " + py + " " + pz), false);
+			Component clickableCoords = Component.translatable("misc.cpd_stimulators.airdrop")
+				.append(Component.literal(" " + "[" + centerX + ", " + centerZ + "]")
+				.withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + pos.getX() + " " + pos.getY() + " " + pos.getZ())).withColor(ChatFormatting.GREEN)))
+				.append(Component.literal(" (?)")
+				.withStyle(style -> style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("misc.cpd_stimulators.airdrop_radius", ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get()))).withColor(ChatFormatting.BOLD)));
+
+			event.getServer().getPlayerList().broadcastSystemMessage(clickableCoords, false);
+		}
 	}
 }
