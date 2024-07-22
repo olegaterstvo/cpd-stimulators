@@ -27,11 +27,11 @@ public class Morphine extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",        10, 0), 0));
-        positives.add(Pair.of(Triple.of("cpd_stimulators:antidote",                   10, 0), 0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:stress_resistance",            10,     0),     0));
+        positives.add(Pair.of(Triple.of("cpd_stimulators:antidote",                     10,     0),     0));
 
-        negatives.add(Pair.of(Triple.of("minecraft:hunger",                         10,  1), 0));
-        negatives.add(Pair.of(Triple.of("toughasnails:thirst",                      10,  1), 0));
+        negatives.add(Pair.of(Triple.of("minecraft:hunger",                             10,     1),     0));
+        negatives.add(Pair.of(Triple.of("toughasnails:thirst",                          10,     1),     0));
     }
 
     private void addEffects(Player player) { ModItems.addEffects(player, positives); }
