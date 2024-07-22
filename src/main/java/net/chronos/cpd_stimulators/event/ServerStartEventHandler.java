@@ -101,9 +101,10 @@ public class ServerStartEventHandler {
 			int c = 0;
 
 			for (int i = 0; i < ModItems.ITEMS.getEntries().stream().toList().size(); i++) {
-				double changeToSpawnInjector = Math.random();
+				double random = Math.random();
+				double changeFromRarity = new ItemStack(ModItems.ITEMS.getEntries().stream().toList().get(i)).getRarity().toString().equals("COMMON") ? .5d : new ItemStack(ModItems.ITEMS.getEntries().stream().toList().get(i)).getRarity().toString().equals("UNCOMMON") ? .35d : new ItemStack(ModItems.ITEMS.getEntries().stream().toList().get(i)).getRarity().toString().equals("RARE") ? .2d : new ItemStack(ModItems.ITEMS.getEntries().stream().toList().get(i)).getRarity().toString().equals("EPIC") ? .1d : 0d;
 
-				if (changeToSpawnInjector < .15) {
+				if (random < changeFromRarity) {
 					int t2 = new Random().nextInt(1, ModItems.ADRENALINE_INJECTOR.get().getDefaultMaxStackSize());
 					chestBlockEntity.setItem(c, new ItemStack(ModItems.ITEMS.getEntries().stream().toList().get(i), t2));
 					c++;
