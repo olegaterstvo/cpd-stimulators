@@ -36,6 +36,7 @@ public class ModItems {
     public static final DeferredItem<Item> ETGC_INJECTOR = registerItem("etgc", () -> new ETGc(new Item.Properties().stacksTo(maxStackSize).rarity(Rarity.EPIC)));
     public static final DeferredItem<Item> L1_INJECTOR = registerItem("l1", () -> new L1(new Item.Properties().stacksTo(maxStackSize).rarity(Rarity.COMMON)));
     public static final DeferredItem<Item> MELDONIN_INJECTOR = registerItem("meldonin", () -> new Meldonin(new Item.Properties().stacksTo(maxStackSize).rarity(Rarity.RARE)));
+    public static final DeferredItem<Item> MORPHINE_INJECTOR = registerItem("morphine", () -> new Morphine(new Item.Properties().stacksTo(maxStackSize).rarity(Rarity.COMMON)));
     public static final DeferredItem<Item> MULE_INJECTOR = registerItem("mule", () -> new Mule(new Item.Properties().stacksTo(maxStackSize).rarity(Rarity.RARE)));
     public static final DeferredItem<Item> OBDOLBOS_INJECTOR = registerItem("obdolbos", () -> new Obdolbos(new Item.Properties().stacksTo(maxStackSize).rarity(Rarity.EPIC)));
     public static final DeferredItem<Item> OBDOLBOS2_INJECTOR = registerItem("obdolbos2", () -> new Obdolbos2(new Item.Properties().stacksTo(maxStackSize).rarity(Rarity.EPIC)));

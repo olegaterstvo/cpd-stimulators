@@ -24,33 +24,42 @@ public class ModServerConfigs {
         OVERLOAD_MAX_WEIGHT = BUILDER
                 .comment(" Max weight your character can carry. Default=27648")
                 .define("overload_max_weight", 27648);
-        OVERLOAD_STOP_SPRINTING_THRESHOLD = BUILDER.
-                comment(" Max weight your character can sprint with. Default=13824")
+        OVERLOAD_STOP_SPRINTING_THRESHOLD = BUILDER
+                .comment("")
+                .comment(" Max weight your character can sprint with. Default=13824")
                 .define("overload_stop_sprinting_threshold", 13824);
 
         CONFUSED_CHANCE_OF_ACQUISITION = BUILDER
+                .comment("")
                 .comment(" %Chance of getting confused after taking explosion damage. Default=25")
                 .define("confused_chance_of_acquisition", 25);
         CONFUSED_DURATION_MIN = BUILDER
+                .comment("")
                 .comment(" Minimum possible duration of the effect in ticks (1s=20ticks). Default=60")
                 .define("confused_duration_min", 60);
         CONFUSED_DURATION_MAX = BUILDER
+                .comment("")
                 .comment(" Maximum possible duration of the effect in ticks (1s=20ticks). Default=140")
                 .define("confused_duration_max", 140);
 
         AIRDROP_ANNOUNCEMENT = BUILDER
+                .comment("")
                 .comment(" Should the airdrop be announced in chat")
                 .define("airdrop_announcement", true);
         AIRDROP_ANNOUNCEMENT_X_MINUTES_BEFORE = BUILDER
+                .comment("")
                 .comment(" Time between announcement and drop in minutes")
                 .define("airdrop_announcement_x_minutes_before", 5);
         AIRDROP_EVENT_EVERY_X_MINUTES = BUILDER
+                .comment("")
                 .comment(" Time between airdrops")
                 .define("airdrop_event_every_x_minutes", 60);
         AIRDROP_WITHIN_RADIUS_OF_POLYGON = BUILDER
+                .comment("")
                 .comment(" description")
                 .define("airdrop_within_radius_of_polygon", 500);
         AIRDROP_WITHIN_RADIUS_OF_POINT = BUILDER
+                .comment("")
                 .comment(" description")
                 .define("airdrop_within_radius_of_point", 50);
 

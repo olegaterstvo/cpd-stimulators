@@ -62,6 +62,11 @@ public class ModTrades {
             ));
             trades.get(1).add((entity, randomSource) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 1),
+                    new ItemStack(ModItems.MORPHINE_INJECTOR.get(), 1),
+                    4,8,0.01f
+            ));
+            trades.get(1).add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 1),
                     new ItemStack(ModItems.MULE_INJECTOR.get(), 1),
                     4,8,0.01f
             ));
