@@ -5,6 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
@@ -13,7 +14,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.util.RandomSource;
@@ -32,11 +32,6 @@ import net.minecraft.core.BlockPos;
 
 @EventBusSubscriber(modid = CPDStimulators.MOD_ID)
 public class ServerStartEventHandler {
-	public static boolean ANNOUNCEMENT = false;
-	public static int ANNOUNCEMENT_X_MINUTES_BEFORE = 1;
-	public static int EVENT_EVERY_X_MINUTES = 1;
-	public static int WITHIN_RADIUS_OF_POLYGON = 200;
-	public static int WITHIN_RADIUS_OF_POINT = 50;
 	private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     @SubscribeEvent
@@ -53,7 +48,7 @@ public class ServerStartEventHandler {
 	// 
     private static void scheduleTask(ServerStartedEvent event) {
         long currentTime = System.currentTimeMillis();
-        long nextExecutionTime = ((currentTime / ((long) EVENT_EVERY_X_MINUTES * 60 * 1000)) + 1) * ((long) EVENT_EVERY_X_MINUTES * 60 * 1000);
+        long nextExecutionTime = ((currentTime / ((long) ModServerConfigs.AIRDROP_EVENT_EVERY_X_MINUTES.get() * 60 * 1000)) + 1) * ((long) ModServerConfigs.AIRDROP_EVENT_EVERY_X_MINUTES.get() * 60 * 1000);
         long delay = nextExecutionTime - currentTime;
 
         scheduler.schedule(() -> {
@@ -61,8 +56,8 @@ public class ServerStartEventHandler {
             scheduleTask(event);
         }, delay, TimeUnit.MILLISECONDS);
 
-		if (ANNOUNCEMENT) {
-			long announcementDelay = delay - (long) ANNOUNCEMENT_X_MINUTES_BEFORE * 60 * 1000;
+		if (ModServerConfigs.AIRDROP_ANNOUNCEMENT.get()) {
+			long announcementDelay = delay - (long) ModServerConfigs.AIRDROP_ANNOUNCEMENT_X_MINUTES_BEFORE.get() * 60 * 1000;
 			if (announcementDelay > 0) {
 				scheduler.schedule(() -> {
 					PlayerChatMessage chatMessage = PlayerChatMessage.system("скоро сундук");
@@ -89,11 +84,11 @@ public class ServerStartEventHandler {
 			sumZ += pos.getZ();
 		}
 
-		int centerX = sumX / players.size() + Mth.nextInt(RandomSource.create(), 1, WITHIN_RADIUS_OF_POLYGON);
-		int centerZ = sumZ / players.size() + Mth.nextInt(RandomSource.create(), 1, WITHIN_RADIUS_OF_POLYGON);
+		int centerX = sumX / players.size() + Mth.nextInt(RandomSource.create(), 1, ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POLYGON.get());
+		int centerZ = sumZ / players.size() + Mth.nextInt(RandomSource.create(), 1, ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POLYGON.get());
 
-		int px = centerX + Mth.nextInt(RandomSource.create(), 1, WITHIN_RADIUS_OF_POINT);
-		int pz = centerZ + Mth.nextInt(RandomSource.create(), 1, WITHIN_RADIUS_OF_POINT);
+		int px = centerX + Mth.nextInt(RandomSource.create(), 1, ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get());
+		int pz = centerZ + Mth.nextInt(RandomSource.create(), 1, ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get());
 		
 		// CommandSourceStack commandSourceStack = event.getServer().createCommandSourceStack();
 		// event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/chunky center " + px + " " + pz);
@@ -123,7 +118,7 @@ public class ServerStartEventHandler {
 					.append(Component.literal(" " + "[" + centerX + ", " + centerZ + "]")
 					.withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + pos.getX() + " " + pos.getY() + " " + pos.getZ())).withColor(ChatFormatting.GREEN)))
 					.append(Component.literal(" (?)")
-					.withStyle(style -> style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("misc.cpd_stimulators.airdrop_radius", WITHIN_RADIUS_OF_POINT))).withColor(ChatFormatting.BOLD)));
+					.withStyle(style -> style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("misc.cpd_stimulators.airdrop_radius", ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get()))).withColor(ChatFormatting.BOLD)));
 
 				event.getServer().getPlayerList().broadcastSystemMessage(clickableCoords, false);
 			}

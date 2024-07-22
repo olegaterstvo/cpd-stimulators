@@ -1,7 +1,7 @@
 package net.chronos.cpd_stimulators.effect.custom;
 
 import net.chronos.cpd_stimulators.CPDStimulators;
-import net.chronos.cpd_stimulators.config.ModCommonConfigs;
+import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
@@ -38,17 +38,17 @@ public class Confused extends MobEffect {
         if (event.getSource().is(DamageTypes.EXPLOSION) || event.getSource().is(DamageTypes.PLAYER_EXPLOSION)){
             Random rnd = new Random();
 //            if (rnd.nextInt(4) != 0) return; //25% chance
-            if (rnd.nextInt(100) >= ModCommonConfigs.CONFUSED_CHANCE_OF_ACQUISITION.get()) return;
+            if (rnd.nextInt(100) >= ModServerConfigs.CONFUSED_CHANCE_OF_ACQUISITION.get()) return;
 
 //            int duration = rnd.nextInt(60, 140);
-            int min = ModCommonConfigs.CONFUSED_DURATION_MIN.get();
-            int max = ModCommonConfigs.CONFUSED_DURATION_MAX.get();
+            int min = ModServerConfigs.CONFUSED_DURATION_MIN.get();
+            int max = ModServerConfigs.CONFUSED_DURATION_MAX.get();
             int duration;
             if (min > 0 && max > 0 && min < max){
                 duration = rnd.nextInt(min, max);
             } else {
                 CPDStimulators.LOGGER.warn("CONFUSED_DURATION_MIN or CONFUSED_DURATION_MAX values are incorrect, using default");
-                duration =  rnd.nextInt(ModCommonConfigs.CONFUSED_DURATION_MIN.getDefault(), ModCommonConfigs.CONFUSED_DURATION_MAX.getDefault());
+                duration =  rnd.nextInt(ModServerConfigs.CONFUSED_DURATION_MIN.getDefault(), ModServerConfigs.CONFUSED_DURATION_MAX.getDefault());
             }
 
             event.getEntity().addEffect(new MobEffectInstance(ModEffects.CONFUSED.getDelegate(), duration, 0));

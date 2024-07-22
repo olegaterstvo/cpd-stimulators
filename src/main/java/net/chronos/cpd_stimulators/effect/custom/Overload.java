@@ -1,6 +1,7 @@
 package net.chronos.cpd_stimulators.effect.custom;
 
 import net.chronos.cpd_stimulators.CPDStimulators;
+import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -12,15 +13,13 @@ import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
 public class Overload extends MobEffect {
     public Overload(MobEffectCategory category, int color) { super(category, color); }
 
-    public static float MAX_WEIGHT = 27648f;
-    public static float STOP_SPRINTING_THRESHOLD = 13824f;
 
     @SubscribeEvent
     public static void onMovementInputUpdate(MovementInputUpdateEvent event) {
         if (!event.getEntity().isLocalPlayer()) return;
         if (!event.getEntity().hasEffect(ModEffects.OVERLOAD.getDelegate())) return;
 
-        float modifier = MAX_WEIGHT;
+        float modifier = ModServerConfigs.OVERLOAD_MAX_WEIGHT.get().floatValue();
         float multiplier = 1;
 
         if (event.getEntity().hasEffect(ModEffects.INCREASED_CARRYING_CAPACITY.getDelegate())) {
@@ -28,7 +27,7 @@ public class Overload extends MobEffect {
             multiplier = amplifier == 0 ? 1.15f : amplifier == 1 ? 1.30f : amplifier == 2 ? 1.45f : amplifier == 3 ? 1.5f : 1f;
         }
 
-        if (event.getEntity().hasEffect(ModEffects.INCREASED_CARRYING_CAPACITY.getDelegate())) modifier = MAX_WEIGHT * multiplier;
+        if (event.getEntity().hasEffect(ModEffects.INCREASED_CARRYING_CAPACITY.getDelegate())) modifier = ModServerConfigs.OVERLOAD_MAX_WEIGHT.get().floatValue() * multiplier;
 
         float overload_amplifier = event.getEntity().getPersistentData().getFloat("overload_amplifier");
         float f = (float) Math.pow(overload_amplifier / modifier, 5);

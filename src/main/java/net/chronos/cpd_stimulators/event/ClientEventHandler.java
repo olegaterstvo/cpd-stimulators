@@ -1,6 +1,7 @@
 package net.chronos.cpd_stimulators.event;
 
 import net.chronos.cpd_stimulators.CPDStimulators;
+import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
@@ -19,8 +20,6 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static net.chronos.cpd_stimulators.effect.custom.Overload.STOP_SPRINTING_THRESHOLD;
 
 @EventBusSubscriber(modid = CPDStimulators.MOD_ID)
 public class ClientEventHandler {
@@ -171,7 +170,7 @@ public class ClientEventHandler {
         } else {
             event.getEntity().getPersistentData().putFloat("overload_amplifier", sum);
             event.getEntity().addEffect(new MobEffectInstance(ModEffects.OVERLOAD, -1, 0, false, false));
-            if (sum > STOP_SPRINTING_THRESHOLD && event.getEntity().isSprinting()) event.getEntity().setSprinting(false);
+            if (sum > ModServerConfigs.OVERLOAD_STOP_SPRINTING_THRESHOLD.get().floatValue() && event.getEntity().isSprinting()) event.getEntity().setSprinting(false);
         }
     }
 

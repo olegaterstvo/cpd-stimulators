@@ -17,6 +17,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         super(output, CPDStimulators.MOD_ID, existingFileHelper);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void registerModels() {
         List<DeferredHolder<Item, ? extends Item>> items = ModItems.ITEMS.getEntries().stream().toList();

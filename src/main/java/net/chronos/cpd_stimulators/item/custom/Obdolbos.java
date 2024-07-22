@@ -75,7 +75,6 @@ public class Obdolbos extends Item {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
 
         if (!Screen.hasShiftDown()) {
-            tooltipComponents.add(Component.literal(""));
             tooltipComponents.add(Component.translatable("misc.cpd_stimulators.press_shift"));
             return;
         }

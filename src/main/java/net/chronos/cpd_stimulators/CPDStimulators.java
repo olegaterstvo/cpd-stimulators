@@ -1,6 +1,6 @@
 package net.chronos.cpd_stimulators;
 
-import net.chronos.cpd_stimulators.config.ModCommonConfigs;
+import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.chronos.cpd_stimulators.entity.ModEntities;
 import net.chronos.cpd_stimulators.item.ModItemGroup;
@@ -21,7 +21,7 @@ public class CPDStimulators {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public CPDStimulators(IEventBus eventBus, ModContainer modContainer){
-        modContainer.registerConfig(ModConfig.Type.COMMON, ModCommonConfigs.SPEC,"CPDstimulators-common.toml");
+        modContainer.registerConfig(ModConfig.Type.SERVER, ModServerConfigs.SPEC);
 
         ModItemGroup.register(eventBus);
         ModItems.register(eventBus);
