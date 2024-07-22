@@ -8,8 +8,13 @@ import java.util.concurrent.TimeUnit;
 
 import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.item.ModItems;
+import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -32,6 +37,7 @@ import net.chronos.cpd_stimulators.CPDStimulators;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 @EventBusSubscriber(modid = CPDStimulators.MOD_ID)
 public class ServerStartEventHandler {
@@ -48,7 +54,7 @@ public class ServerStartEventHandler {
         long delay = nextExecutionTime - currentTime;
 
         scheduler.schedule(() -> {
-            executeTask(event);
+            executeTask(event.getServer());
             scheduleTask(event);
         }, delay, TimeUnit.MILLISECONDS);
 
@@ -63,10 +69,10 @@ public class ServerStartEventHandler {
 		}
     }
 
-	private static void executeTask(ServerStartedEvent event) {
-		ServerLevel world = event.getServer().overworld();
+	public static void executeTask(MinecraftServer server) {
+		ServerLevel world = server.overworld();
 		
-		List<ServerPlayer> players = event.getServer().getPlayerList().getPlayers();
+		List<ServerPlayer> players = server.getPlayerList().getPlayers();
 		if (players.isEmpty()) {
 			return;
 		}
@@ -86,13 +92,14 @@ public class ServerStartEventHandler {
 		int px = centerX + Mth.nextInt(RandomSource.create(), 1, ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get());
 		int pz = centerZ + Mth.nextInt(RandomSource.create(), 1, ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get());
 		
-		CommandSourceStack commandSourceStack = event.getServer().createCommandSourceStack();
-//		event.getServer().getCommands().performPrefixedCommand(commandSourceStack, "/forceload add " + px + " " + pz + " " + (px + 16) + " " + (pz + 16));
-		event.getServer().overworld().setChunkForced((int) (px / 16), (int) (pz / 16), true);
+		CommandSourceStack commandSourceStack = server.createCommandSourceStack();
+//		server.getCommands().performPrefixedCommand(commandSourceStack, "/forceload add " + px + " " + pz + " " + (px + 16) + " " + (pz + 16));
+		server.overworld().setChunkForced((int) (px / 16), (int) (pz / 16), true);
 
 		int py = world.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, px, pz);
 		BlockPos pos = BlockPos.containing(Double.valueOf(px), Double.valueOf(py), Double.valueOf(pz));
 		world.setBlock(pos, Blocks.CHEST.defaultBlockState(), 3);
+		world.addParticle(ParticleTypes.CLOUD, pos.getX(), pos.getY(), pos.getZ(), 0.0D, 0.0D, 0.0D);
 		CPDStimulators.LOGGER.info("AIRDROP at " + pos);
 
 		BlockState blockState = world.getBlockState(pos);
@@ -101,12 +108,18 @@ public class ServerStartEventHandler {
 			int c = 0;
 
 			for (int i = 0; i < ModItems.ITEMS.getEntries().stream().toList().size(); i++) {
+				DeferredHolder<Item, ?> item = ModItems.ITEMS.getEntries().stream().toList().get(i);
+
 				double random = Math.random();
-				double changeFromRarity = new ItemStack(ModItems.ITEMS.getEntries().stream().toList().get(i)).getRarity().toString().equals("COMMON") ? .5d : new ItemStack(ModItems.ITEMS.getEntries().stream().toList().get(i)).getRarity().toString().equals("UNCOMMON") ? .35d : new ItemStack(ModItems.ITEMS.getEntries().stream().toList().get(i)).getRarity().toString().equals("RARE") ? .2d : new ItemStack(ModItems.ITEMS.getEntries().stream().toList().get(i)).getRarity().toString().equals("EPIC") ? .1d : 0d;
+				double changeFromRarity =
+					new ItemStack(item).getRarity().equals(Rarity.COMMON) ? .5d :
+					new ItemStack(item).getRarity().equals(Rarity.UNCOMMON) ? .35d :
+					new ItemStack(item).getRarity().equals(Rarity.RARE) ? .2d :
+					new ItemStack(item).getRarity().equals(Rarity.EPIC) ? .1d : 0d;
 
 				if (random < changeFromRarity) {
 					int t2 = new Random().nextInt(1, ModItems.ADRENALINE_INJECTOR.get().getDefaultMaxStackSize());
-					chestBlockEntity.setItem(c, new ItemStack(ModItems.ITEMS.getEntries().stream().toList().get(i), t2));
+					chestBlockEntity.setItem(c, new ItemStack(item, t2));
 					c++;
 				}
 			}
@@ -124,7 +137,7 @@ public class ServerStartEventHandler {
 				.append(Component.literal(" (?)")
 				.withStyle(style -> style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("misc.cpd_stimulators.airdrop_radius", ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get()))).withColor(ChatFormatting.BOLD)));
 
-			event.getServer().getPlayerList().broadcastSystemMessage(clickableCoords, false);
+			server.getPlayerList().broadcastSystemMessage(clickableCoords, false);
 		}
 	}
 }

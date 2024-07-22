@@ -40,16 +40,16 @@ public class ModServerConfigs {
 
         AIRDROP_ANNOUNCEMENT = BUILDER
                 .comment(" Should the airdrop be announced in chat")
-                .define("airdrop_announcement", false);
+                .define("airdrop_announcement", true);
         AIRDROP_ANNOUNCEMENT_X_MINUTES_BEFORE = BUILDER
                 .comment(" Time between announcement and drop in minutes")
-                .define("airdrop_announcement_x_minutes_before", 1);
+                .define("airdrop_announcement_x_minutes_before", 5);
         AIRDROP_EVENT_EVERY_X_MINUTES = BUILDER
                 .comment(" Time between airdrops")
-                .define("airdrop_event_every_x_minutes", 1);
+                .define("airdrop_event_every_x_minutes", 60);
         AIRDROP_WITHIN_RADIUS_OF_POLYGON = BUILDER
                 .comment(" description")
-                .define("airdrop_within_radius_of_polygon", 200);
+                .define("airdrop_within_radius_of_polygon", 500);
         AIRDROP_WITHIN_RADIUS_OF_POINT = BUILDER
                 .comment(" description")
                 .define("airdrop_within_radius_of_point", 50);
