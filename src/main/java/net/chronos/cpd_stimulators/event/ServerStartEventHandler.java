@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -62,7 +63,7 @@ public class ServerStartEventHandler {
 			long announcementDelay = delay - (long) ModServerConfigs.AIRDROP_ANNOUNCEMENT_X_MINUTES_BEFORE.get() * 60 * 1000;
 			if (announcementDelay > 0) {
 				scheduler.schedule(() -> {
-					PlayerChatMessage chatMessage = PlayerChatMessage.system("скоро сундук");
+					PlayerChatMessage chatMessage = PlayerChatMessage.system(Component.translatable("misc.cpd_stimulators.airdrop_soon").getString());
 					event.getServer().getPlayerList().broadcastChatMessage(chatMessage, event.getServer().createCommandSourceStack(), ChatType.bind(ChatType.CHAT, event.getServer().createCommandSourceStack()));
 				}, announcementDelay, TimeUnit.MILLISECONDS);
 			}
@@ -91,15 +92,16 @@ public class ServerStartEventHandler {
 
 		int px = centerX + Mth.nextInt(RandomSource.create(), 1, ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get());
 		int pz = centerZ + Mth.nextInt(RandomSource.create(), 1, ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get());
-		
-		CommandSourceStack commandSourceStack = server.createCommandSourceStack();
-//		server.getCommands().performPrefixedCommand(commandSourceStack, "/forceload add " + px + " " + pz + " " + (px + 16) + " " + (pz + 16));
+
+		// PRELOAD CHUNK
 		server.overworld().setChunkForced((int) (px / 16), (int) (pz / 16), true);
 
 		int py = world.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, px, pz);
 		BlockPos pos = BlockPos.containing(Double.valueOf(px), Double.valueOf(py), Double.valueOf(pz));
 		world.setBlock(pos, Blocks.CHEST.defaultBlockState(), 3);
-		world.addParticle(ParticleTypes.CLOUD, pos.getX(), pos.getY(), pos.getZ(), 0.0D, 0.0D, 0.0D);
+//		world.addParticle(ParticleTypes.CLOUD, pos.getX(), pos.getY(), pos.getZ(), 0.0D, 0.0D, 0.0D);
+//		world.sendParticles(ParticleTypes.FLAME, pos.getX(), pos.getY(), pos.getZ(), 1000, 0, 0, 0, 0.0);
+
 		CPDStimulators.LOGGER.info("AIRDROP at " + pos);
 
 		BlockState blockState = world.getBlockState(pos);

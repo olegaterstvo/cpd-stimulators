@@ -45,6 +45,7 @@
 	"misc.cpd_stimulators.chance_of_death": "   %s Chance of §cInstant Death",
 	"misc.cpd_stimulators.teleport_to": "Teleport to",
 	"misc.cpd_stimulators.airdrop": "The airdrop landed somewhere near",
+	"misc.cpd_stimulators.airdrop_soon": "Medical support will be arriving shortly...",
 	"misc.cpd_stimulators.airdrop_radius": "Within a %1$s-block radius of these coordinates",
   
 	"misc.cpd_stimulators.m": "m",
