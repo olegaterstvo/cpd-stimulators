@@ -31,6 +31,10 @@ public class ModSounds {
             "sanitar_mutter_1", // must match the resource location on the next line
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(CPDStimulators.MOD_ID, "sanitar_mutter"))
     );
+    public static final DeferredHolder<SoundEvent, SoundEvent> CENTRIFUGE = SOUND_EVENTS.register(
+            "centrifuge", // must match the resource location on the next line
+            () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(CPDStimulators.MOD_ID, "centrifuge"))
+    );
 
     public static void register(IEventBus eventBus) {
         SOUND_EVENTS.register(eventBus);

@@ -95,5 +95,11 @@
       "cpd_stimulators:sanitar/mutter_31",
       "cpd_stimulators:sanitar/mutter_32"
     ]
+  },
+  "centrifuge": {
+    "subtitle": "sounds.cpd_stimulators.centrifuge",
+    "sounds": [
+      "cpd_stimulators:centrifuge"
+    ]
   }
 }

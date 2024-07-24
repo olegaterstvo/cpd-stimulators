@@ -1,10 +1,13 @@
 package net.chronos.cpd_stimulators;
 
+import net.chronos.cpd_stimulators.block.ModBlocks;
+import net.chronos.cpd_stimulators.block.entity.ModBlockEntities;
 import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.chronos.cpd_stimulators.entity.ModEntities;
 import net.chronos.cpd_stimulators.item.ModItemGroup;
 import net.chronos.cpd_stimulators.item.ModItems;
+import net.chronos.cpd_stimulators.screen.ModMenuTypes;
 import net.chronos.cpd_stimulators.sound.ModSounds;
 import net.chronos.cpd_stimulators.villager.ModVillagers;
 import net.neoforged.fml.config.ModConfig;
@@ -29,5 +32,8 @@ public class CPDStimulators {
         ModSounds.register(eventBus);
         ModVillagers.register(eventBus);
         ModEntities.register(eventBus);
+        ModBlocks.register(eventBus);
+        ModBlockEntities.register(eventBus);
+        ModMenuTypes.register(eventBus);
     }
 }

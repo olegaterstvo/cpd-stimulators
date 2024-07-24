@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "cpd_stimulators:block/centrifuge"
+    }
+  }
+}
