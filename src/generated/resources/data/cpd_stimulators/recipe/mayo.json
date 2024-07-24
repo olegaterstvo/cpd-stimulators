@@ -1,16 +1,16 @@
 {
   "type": "cpd_stimulators:centrifuge_serializer",
   "input_1": {
-    "item": "minecraft:brick"
+    "item": "minecraft:sunflower"
   },
   "input_2": {
-    "item": "cpd_stimulators:mayo"
+    "item": "minecraft:sunflower"
   },
   "input_3": {
-    "item": "minecraft:nether_wart"
+    "item": "minecraft:egg"
   },
   "result": {
     "count": 1,
-    "id": "cpd_stimulators:trimadol"
+    "id": "cpd_stimulators:mayo"
   }
 }

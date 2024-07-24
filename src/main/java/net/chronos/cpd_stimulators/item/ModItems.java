@@ -9,7 +9,10 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -51,6 +54,7 @@ public class ModItems {
     public static final DeferredItem<Item> SJ15_INJECTOR = registerItem("sj15", () -> new SJ15(new Item.Properties().stacksTo(maxStackSize).rarity(Rarity.EPIC)));
     public static final DeferredItem<Item> TRIMADOL_INJECTOR = registerItem("trimadol", () -> new Trimadol(new Item.Properties().stacksTo(maxStackSize).rarity(Rarity.RARE)));
     public static final DeferredItem<Item> ZAGUSTIN_INJECTOR = registerItem("zagustin", () -> new Zagustin(new Item.Properties().stacksTo(maxStackSize).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> MAYO = registerItem("mayo", () -> new Item(new Item.Properties().food(ModFoods.MAYO).rarity(Rarity.EPIC)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

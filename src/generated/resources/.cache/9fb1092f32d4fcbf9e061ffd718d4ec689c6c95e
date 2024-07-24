@@ -1,10 +1,11 @@
-// 1.21	2024-07-25T01:08:49.0375857	Recipes
+// 1.21	2024-07-25T02:04:58.5588073	Recipes
 eaf131b8b89067dfb0adfd277cf4ff3e5bf6e2eb data/cpd_stimulators/advancement/recipes/adrenaline.json
 b829ca1cf5d51772d151c7a1396a337cb02f1799 data/cpd_stimulators/advancement/recipes/ahf1m.json
 3c765107cfc93d343367225e659b2d3130ba6d8d data/cpd_stimulators/advancement/recipes/btg2a2.json
 2660249758080a5a3871258c4fbe6953a1eb84d8 data/cpd_stimulators/advancement/recipes/btg3.json
 be9ae45a22e3fca5bb7ae10ae70c8307a1ef56fa data/cpd_stimulators/advancement/recipes/etgc.json
 d00886dd4d413196700ee4bc9ee9ac41374668d7 data/cpd_stimulators/advancement/recipes/l1.json
+9cc52bfe14e94bac0c5fa519362a5d2a377a754d data/cpd_stimulators/advancement/recipes/mayo.json
 0efe790cb3176ec3b0c7466bbabc90591b156a2a data/cpd_stimulators/advancement/recipes/meldonin.json
 8fac29b557fdc8c1bc8f8c4f022c5831d42506ad data/cpd_stimulators/advancement/recipes/misc/centrifuge.json
 20124ec588a98621a71af633c24e1f79c5ae617a data/cpd_stimulators/advancement/recipes/morphine.json
@@ -29,6 +30,7 @@ d67d2cece20fc3811c0a0d2cd7fce281f34f197d data/cpd_stimulators/recipe/btg2a2.json
 e4236674cc72d44e7939cdf92c1dd95151cd35a4 data/cpd_stimulators/recipe/centrifuge.json
 b1fafc30968e806569d4a7ab20ab84463db9ab14 data/cpd_stimulators/recipe/etgc.json
 282345f79fbd6cbfd4acf81ee2f56c73d3631c5a data/cpd_stimulators/recipe/l1.json
+7347f111edd1620ef97554d32098c8e1014d4b9d data/cpd_stimulators/recipe/mayo.json
 4db762b48c0fe16e4b20d03066b9b4624fa5c6f8 data/cpd_stimulators/recipe/meldonin.json
 b88a63a5e90fbd7f44debb3f901a89af06f58399 data/cpd_stimulators/recipe/morphine.json
 e83fa9334204a5e94f2142f5f7e4574ea66305c1 data/cpd_stimulators/recipe/mule.json
@@ -43,5 +45,5 @@ cf2e8e8b90a1a15c708c4796edec588c9d0e76df data/cpd_stimulators/recipe/p22.json
 869027ceba65b230c004b13b32835710aa37967c data/cpd_stimulators/recipe/sj15.json
 acc78d827700230b5eda60223fdf1bf41b76e966 data/cpd_stimulators/recipe/sj6.json
 0ccfd7756bc97deb15c1354e32be3d337c760e35 data/cpd_stimulators/recipe/sj9.json
-4d8038579caa43a0cb61fdac91ba0419cefe83d5 data/cpd_stimulators/recipe/trimadol.json
+7e83aa6bd7cc7ad82247ae22e77c8d4eaa1ee36c data/cpd_stimulators/recipe/trimadol.json
 edb93bade6c49f2dff9c6374bd37e34e2915b162 data/cpd_stimulators/recipe/zagustin.json

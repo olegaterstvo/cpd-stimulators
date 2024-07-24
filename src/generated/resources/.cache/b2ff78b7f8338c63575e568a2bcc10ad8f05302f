@@ -1,10 +1,11 @@
-// 1.21	2024-07-23T05:27:25.8173215	Item Models: cpd_stimulators
+// 1.21	2024-07-25T01:50:50.8963632	Item Models: cpd_stimulators
 644aff5cf393423afe14064342cddd8819fddd21 assets/cpd_stimulators/models/item/adrenaline.json
 b2d6878c50ee09b4c9d4152da74ec3f1494245c0 assets/cpd_stimulators/models/item/ahf1m.json
 910a6f6715e8e2d86db7c028af2be9aa88165ad8 assets/cpd_stimulators/models/item/btg2a2.json
 e64819c7185cf886186c5af0aeae96032c53c85f assets/cpd_stimulators/models/item/btg3.json
 6b9b73622542f5557fb9c556864a9475b6898421 assets/cpd_stimulators/models/item/etgc.json
 f1dfe48d3bf74b3cccce5ef6e91b55b6a0865260 assets/cpd_stimulators/models/item/l1.json
+4a79c8ab8ff05730f40c13287173026c187ede96 assets/cpd_stimulators/models/item/mayo.json
 b9f4d4b106a3324946c7c006d0b35ee027ab6286 assets/cpd_stimulators/models/item/meldonin.json
 74f0d63f3a12f0d16e7a8e4cb45d6a92f2b48414 assets/cpd_stimulators/models/item/morphine.json
 c96b62ce859cd6e46cc52ba3121b606ded12c09e assets/cpd_stimulators/models/item/mule.json

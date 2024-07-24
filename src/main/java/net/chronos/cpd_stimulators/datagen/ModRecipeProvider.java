@@ -174,8 +174,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ).unlockedBy("has_centrifuge", has(ModBlocks.CENTRIFUGE.asItem())).save(recipeOutput);
 
         new CentrifugeRecipeBuilder(
-                Ingredient.of(Items.MILK_BUCKET),
                 Ingredient.of(Items.BRICK),
+                Ingredient.of(ModItems.MAYO.get()),
                 Ingredient.of(Items.NETHER_WART),
                 new ItemStack(ModItems.TRIMADOL_INJECTOR.get())
         ).unlockedBy("has_centrifuge", has(ModBlocks.CENTRIFUGE.asItem())).save(recipeOutput);
@@ -187,7 +187,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 new ItemStack(ModItems.ZAGUSTIN_INJECTOR.get())
         ).unlockedBy("has_centrifuge", has(ModBlocks.CENTRIFUGE.asItem())).save(recipeOutput);
 
-    //TODO МАЙОНЕЗ
+        new CentrifugeRecipeBuilder(
+                Ingredient.of(Items.SUNFLOWER),
+                Ingredient.of(Items.SUNFLOWER),
+                Ingredient.of(Items.EGG),
+                new ItemStack(ModItems.MAYO.get())
+        ).unlockedBy("has_centrifuge", has(ModBlocks.CENTRIFUGE.asItem())).save(recipeOutput);
+
 
     }
 }
