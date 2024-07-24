@@ -11,7 +11,7 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 public class CallAirdrop {
     @SubscribeEvent
     public static void registerCommand(RegisterCommandsEvent event) {
-        event.getDispatcher().register(Commands.literal("callairdrop").executes(arguments -> {
+        event.getDispatcher().register(Commands.literal("callairdrop").requires(source -> source.hasPermission(1)).executes(arguments -> {
             ServerStartEventHandler.executeTask(arguments.getSource().getServer());
             return 0;
         }));
