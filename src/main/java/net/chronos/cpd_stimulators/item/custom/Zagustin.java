@@ -32,7 +32,7 @@ public class Zagustin extends Item {
         super(properties);
 
         // pair(triple(effect, duration (in seconds), amplifier), delay (in seconds))
-        positives.add(Pair.of(Triple.of("minecraft:regeneration",       3,      2), 1));
+        positives.add(Pair.of(Triple.of("minecraft:regeneration",       1,      4), 1));
         positives.add(Pair.of(Triple.of("minecraft:health_boost",       160,    1), 1));
 
         negatives.add(Pair.of(Triple.of("minecraft:hunger",             180,    0), 1));

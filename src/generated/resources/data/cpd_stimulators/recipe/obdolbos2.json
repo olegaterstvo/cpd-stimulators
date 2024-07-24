@@ -1,0 +1,16 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:blaze_rod"
+  },
+  "input_2": {
+    "item": "minecraft:cocoa_beans"
+  },
+  "input_3": {
+    "item": "minecraft:chorus_fruit"
+  },
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:obdolbos2"
+  }
+}

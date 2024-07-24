@@ -1,0 +1,16 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:lily_pad"
+  },
+  "input_2": {
+    "item": "minecraft:sugar"
+  },
+  "input_3": {
+    "item": "minecraft:cocoa_beans"
+  },
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:btg3"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:golden_carrot"
+  },
+  "input_2": {
+    "item": "minecraft:sugar"
+  },
+  "input_3": [],
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:ahf1m"
+  }
+}

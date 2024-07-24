@@ -1,0 +1,16 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:beetroot"
+  },
+  "input_2": {
+    "item": "minecraft:honey_bottle"
+  },
+  "input_3": {
+    "item": "minecraft:cocoa_beans"
+  },
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:p22"
+  }
+}

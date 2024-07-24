@@ -1,0 +1,16 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:snow_block"
+  },
+  "input_2": {
+    "item": "minecraft:water_bucket"
+  },
+  "input_3": {
+    "item": "minecraft:snow_block"
+  },
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:sj9"
+  }
+}

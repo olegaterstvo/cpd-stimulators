@@ -1,0 +1,16 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:cooked_salmon"
+  },
+  "input_2": {
+    "item": "minecraft:turtle_egg"
+  },
+  "input_3": {
+    "item": "minecraft:nether_wart"
+  },
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:meldonin"
+  }
+}

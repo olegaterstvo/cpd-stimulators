@@ -36,6 +36,7 @@ public class CentrifugeBlock extends BaseEntityBlock {
         return SHAPE;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;

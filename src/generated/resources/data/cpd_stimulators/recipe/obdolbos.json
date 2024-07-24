@@ -1,0 +1,16 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:glow_ink_sac"
+  },
+  "input_2": {
+    "item": "minecraft:poisonous_potato"
+  },
+  "input_3": {
+    "item": "minecraft:chorus_fruit"
+  },
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:obdolbos"
+  }
+}

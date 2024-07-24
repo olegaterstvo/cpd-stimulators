@@ -1,0 +1,16 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:pufferfish"
+  },
+  "input_2": {
+    "item": "minecraft:chorus_fruit"
+  },
+  "input_3": {
+    "item": "minecraft:rabbit_foot"
+  },
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:sj15"
+  }
+}

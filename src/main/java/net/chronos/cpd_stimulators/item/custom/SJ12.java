@@ -44,7 +44,7 @@ public class SJ12 extends Item {
         if (mobEffect.isPresent()) {
             negatives.add(Pair.of(Triple.of("toughasnails:internal_warmth", 300, 1), 606));
         } else {
-            negatives.add(Pair.of(Triple.of("minecraft:wither",             30, 0), 606));
+            negatives.add(Pair.of(Triple.of("minecraft:wither",             20, 0), 606));
         }
     }
 

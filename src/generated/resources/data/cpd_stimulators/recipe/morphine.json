@@ -1,0 +1,16 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:poppy"
+  },
+  "input_2": {
+    "item": "minecraft:poppy"
+  },
+  "input_3": {
+    "item": "minecraft:poppy"
+  },
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:morphine"
+  }
+}

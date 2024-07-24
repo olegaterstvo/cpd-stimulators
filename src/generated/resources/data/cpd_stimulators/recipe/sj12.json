@@ -1,0 +1,16 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:powder_snow_bucket"
+  },
+  "input_2": {
+    "item": "minecraft:nether_wart"
+  },
+  "input_3": {
+    "item": "minecraft:carrot"
+  },
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:sj12"
+  }
+}

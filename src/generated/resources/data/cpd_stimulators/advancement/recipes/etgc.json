@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_centrifuge": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cpd_stimulators:centrifuge"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cpd_stimulators:etgc"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_centrifuge"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cpd_stimulators:etgc"
+    ]
+  }
+}

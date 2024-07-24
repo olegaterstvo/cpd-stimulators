@@ -1,0 +1,16 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:baked_potato"
+  },
+  "input_2": {
+    "item": "minecraft:cooked_mutton"
+  },
+  "input_3": {
+    "item": "minecraft:cooked_chicken"
+  },
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:sj6"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:red_mushroom"
+  },
+  "input_2": {
+    "item": "minecraft:brown_mushroom"
+  },
+  "input_3": {
+    "item": "minecraft:blaze_powder"
+  },
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:mule"
+  }
+}

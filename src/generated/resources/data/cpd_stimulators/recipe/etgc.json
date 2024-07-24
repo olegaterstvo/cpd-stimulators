@@ -1,0 +1,16 @@
+{
+  "type": "cpd_stimulators:centrifuge_serializer",
+  "input_1": {
+    "item": "minecraft:golden_apple"
+  },
+  "input_2": {
+    "item": "minecraft:glow_berries"
+  },
+  "input_3": {
+    "item": "minecraft:chorus_fruit"
+  },
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:etgc"
+  }
+}
