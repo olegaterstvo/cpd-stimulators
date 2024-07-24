@@ -14,7 +14,7 @@ import java.text.MessageFormat;
 public class ClearDeferred {
     @SubscribeEvent
     public static void registerCommand(RegisterCommandsEvent event) {
-        event.getDispatcher().register(Commands.literal("cleardeferred").executes(arguments -> {
+        event.getDispatcher().register(Commands.literal("cleardeferred").requires(source -> source.hasPermission(4)).executes(arguments -> {
             Player player = arguments.getSource().getPlayer();
 
             boolean hasAny = false;
