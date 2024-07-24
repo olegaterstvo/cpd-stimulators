@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import net.chronos.cpd_stimulators.block.ModBlocks;
 import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.minecraft.client.particle.ParticleProvider;
@@ -111,6 +112,7 @@ public class ServerStartEventHandler {
 
 			for (int i = 0; i < ModItems.ITEMS.getEntries().stream().toList().size(); i++) {
 				DeferredHolder<Item, ?> item = ModItems.ITEMS.getEntries().stream().toList().get(i);
+				if (item.get().equals(ModBlocks.CENTRIFUGE.asItem())) continue;
 
 				double random = Math.random();
 				double changeFromRarity =
