@@ -22,6 +22,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         List<DeferredHolder<Item, ? extends Item>> items = ModItems.ITEMS.getEntries().stream().toList();
         for (DeferredHolder<Item, ? extends Item> item : items){
+            CPDStimulators.LOGGER.info(item.getId().toString());
+            if(item.getId().equals(ResourceLocation.fromNamespaceAndPath(CPDStimulators.MOD_ID, "centrifuge"))) continue;
             simpleItem((DeferredHolder<Item, Item>) item);
         }
 

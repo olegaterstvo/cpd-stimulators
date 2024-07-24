@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:glass_bottle"
+    },
+    "C": {
+      "item": "minecraft:stonecutter"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "S": {
+      "item": "minecraft:smooth_stone_slab"
+    }
+  },
+  "pattern": [
+    " B ",
+    "BDB",
+    "SCS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "cpd_stimulators:centrifuge"
+  }
+}
