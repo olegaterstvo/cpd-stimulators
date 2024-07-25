@@ -105,7 +105,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         new CentrifugeRecipeBuilder(
                 Ingredient.of(Items.BLAZE_ROD),
-                Ingredient.of(Items.COCOA_BEANS),
+                Ingredient.of(Items.RABBIT_FOOT),
                 Ingredient.of(Items.CHORUS_FRUIT),
                 new ItemStack(ModItems.OBDOLBOS2_INJECTOR.get())
         ).unlockedBy("has_centrifuge", has(ModBlocks.CENTRIFUGE.asItem())).save(recipeOutput);
@@ -168,8 +168,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         new CentrifugeRecipeBuilder(
                 Ingredient.of(Items.PUFFERFISH),
+                Ingredient.of(Items.PHANTOM_MEMBRANE),
                 Ingredient.of(Items.CHORUS_FRUIT),
-                Ingredient.of(Items.RABBIT_FOOT),
                 new ItemStack(ModItems.SJ15_INJECTOR.get())
         ).unlockedBy("has_centrifuge", has(ModBlocks.CENTRIFUGE.asItem())).save(recipeOutput);
 
