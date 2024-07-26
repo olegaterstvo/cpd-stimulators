@@ -1,6 +1,7 @@
 package net.chronos.cpd_stimulators.datagen;
 
 import net.chronos.cpd_stimulators.CPDStimulators;
+import net.chronos.cpd_stimulators.villager.ModVillagers;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.PoiTypeTagsProvider;
@@ -19,6 +20,6 @@ public class ModPoiTypeTagsProvider extends PoiTypeTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(PoiTypeTags.ACQUIRABLE_JOB_SITE)
-                .addOptional(ResourceLocation.fromNamespaceAndPath(CPDStimulators.MOD_ID, "redstone_poi"));
+                .addOptional(ResourceLocation.parse(ModVillagers.CENTRIFUGE_POI.getRegisteredName()));
     }
 }

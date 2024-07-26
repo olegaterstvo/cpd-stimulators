@@ -4,10 +4,10 @@
     "item": "minecraft:pufferfish"
   },
   "input_2": {
-    "item": "minecraft:chorus_fruit"
+    "item": "minecraft:phantom_membrane"
   },
   "input_3": {
-    "item": "minecraft:rabbit_foot"
+    "item": "minecraft:chorus_fruit"
   },
   "result": {
     "count": 1,

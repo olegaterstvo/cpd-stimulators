@@ -2,6 +2,7 @@ package net.chronos.cpd_stimulators.villager;
 
 import com.google.common.collect.ImmutableSet;
 import net.chronos.cpd_stimulators.CPDStimulators;
+import net.chronos.cpd_stimulators.block.ModBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
@@ -17,13 +18,12 @@ public class ModVillagers {
     public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS =
             DeferredRegister.create(BuiltInRegistries.VILLAGER_PROFESSION, CPDStimulators.MOD_ID);
 
-    // TODO: change poi
-    public static final DeferredHolder<PoiType, PoiType> REDSTONE_POI = POI_TYPES.register("redstone_poi",
-            () -> new PoiType(ImmutableSet.copyOf(Blocks.REDSTONE_BLOCK.getStateDefinition().getPossibleStates()),
+    public static final DeferredHolder<PoiType, PoiType> CENTRIFUGE_POI = POI_TYPES.register("centrifuge_poi",
+            () -> new PoiType(ImmutableSet.copyOf(ModBlocks.CENTRIFUGE.get().getStateDefinition().getPossibleStates()),
                     1,1));
     public static final DeferredHolder<VillagerProfession, VillagerProfession> THERAPIST =
             VILLAGER_PROFESSIONS.register("therapist", () -> new VillagerProfession("therapist",
-                    poiTypeHolder -> poiTypeHolder.getDelegate() == REDSTONE_POI.getDelegate(), poiTypeHolder -> poiTypeHolder.getDelegate() == REDSTONE_POI.getDelegate(),
+                    poiTypeHolder -> poiTypeHolder.getDelegate() == CENTRIFUGE_POI.getDelegate(), poiTypeHolder -> poiTypeHolder.getDelegate() == CENTRIFUGE_POI.getDelegate(),
                     ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CLERIC));
 
 

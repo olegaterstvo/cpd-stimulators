@@ -1,4 +1,4 @@
-// 1.21	2024-07-25T02:04:58.5588073	Recipes
+// 1.21	2024-07-26T19:01:51.2668246	Recipes
 eaf131b8b89067dfb0adfd277cf4ff3e5bf6e2eb data/cpd_stimulators/advancement/recipes/adrenaline.json
 b829ca1cf5d51772d151c7a1396a337cb02f1799 data/cpd_stimulators/advancement/recipes/ahf1m.json
 3c765107cfc93d343367225e659b2d3130ba6d8d data/cpd_stimulators/advancement/recipes/btg2a2.json
@@ -35,14 +35,14 @@ b1fafc30968e806569d4a7ab20ab84463db9ab14 data/cpd_stimulators/recipe/etgc.json
 b88a63a5e90fbd7f44debb3f901a89af06f58399 data/cpd_stimulators/recipe/morphine.json
 e83fa9334204a5e94f2142f5f7e4574ea66305c1 data/cpd_stimulators/recipe/mule.json
 68d0ffbbd72599acb6458b412c78f10d10442750 data/cpd_stimulators/recipe/obdolbos.json
-43c600372e87ace5de88e20745a49e9aeece936b data/cpd_stimulators/recipe/obdolbos2.json
+fd9db305e2c5ae50e737c61c4fabcfc2d57ee0c7 data/cpd_stimulators/recipe/obdolbos2.json
 cf2e8e8b90a1a15c708c4796edec588c9d0e76df data/cpd_stimulators/recipe/p22.json
 9c1ba896e1e99b8869b5f520160c4628ec11f3db data/cpd_stimulators/recipe/perfotoran.json
 2fb3def67786b641cbbdf614bf2bd7be187c43d4 data/cpd_stimulators/recipe/pnb.json
 6e50712736aca3f5471b6041fa1f96d09091812d data/cpd_stimulators/recipe/propital.json
 650fc2b0c614ccfbf0843c8ed0ecddc679a5bb23 data/cpd_stimulators/recipe/sj1.json
 7e2e305bfe7559b7984132c4dd19e3b36e5a9ea6 data/cpd_stimulators/recipe/sj12.json
-869027ceba65b230c004b13b32835710aa37967c data/cpd_stimulators/recipe/sj15.json
+a7ca23d4b3222cddd098f7772e83cf8416829248 data/cpd_stimulators/recipe/sj15.json
 acc78d827700230b5eda60223fdf1bf41b76e966 data/cpd_stimulators/recipe/sj6.json
 0ccfd7756bc97deb15c1354e32be3d337c760e35 data/cpd_stimulators/recipe/sj9.json
 7e83aa6bd7cc7ad82247ae22e77c8d4eaa1ee36c data/cpd_stimulators/recipe/trimadol.json

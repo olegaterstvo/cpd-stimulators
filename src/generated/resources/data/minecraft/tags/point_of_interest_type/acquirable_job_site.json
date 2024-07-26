@@ -1,7 +1,7 @@
 {
   "values": [
     {
-      "id": "cpd_stimulators:redstone_poi",
+      "id": "cpd_stimulators:centrifuge_poi",
       "required": false
     }
   ]
