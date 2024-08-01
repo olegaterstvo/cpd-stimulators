@@ -120,4 +120,10 @@ public class CentrifugeMenu extends AbstractContainerMenu {
             this.addSlot(new Slot(playerinventory, i , 8 + i * 18, 142));
         }
     }
+
+    @Override
+    public boolean canDragTo(Slot slot) {
+        return slot.getSlotIndex() != 3;
+    }
+
 }

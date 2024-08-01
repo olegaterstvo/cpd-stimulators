@@ -4,6 +4,7 @@ import net.chronos.cpd_stimulators.recipe.CentrifugeRecipe;
 import net.chronos.cpd_stimulators.recipe.ModRecipes;
 import net.chronos.cpd_stimulators.screen.CentrifugeMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -14,12 +15,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -30,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class CentrifugeBlockEntity extends BlockEntity implements MenuProvider {
+public class CentrifugeBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
     public static final int NUMBER_OF_SLOTS = 4;
     public final ItemStackHandler itemHandler = new ItemStackHandler(NUMBER_OF_SLOTS){
         @Override
@@ -211,4 +214,78 @@ public class CentrifugeBlockEntity extends BlockEntity implements MenuProvider {
     }
 
 
+    @Override
+    public int[] getSlotsForFace(Direction direction) {
+        int[] a = new int[NUMBER_OF_SLOTS];
+        for(int i = 0; i < NUMBER_OF_SLOTS; i++){
+            a[i] = i;
+        }
+        return a;
+    }
+
+    @Override
+    public boolean canPlaceItemThroughFace(int i, ItemStack itemStack, @Nullable Direction direction) {
+        if (direction == null) return i != OUTPUT_SLOT;
+
+        if(direction.equals(Direction.SOUTH)){
+            return i == INPUT_SLOT_CENTER;
+        } else if (direction.equals(Direction.EAST)) {
+            return i == INPUT_SLOT_LEFT;
+        } else if (direction.equals(Direction.WEST)) {
+            return i == INPUT_SLOT_RIGHT;
+        } else {
+            return i != OUTPUT_SLOT;
+        }
+    }
+
+    @Override
+    public boolean canTakeItemThroughFace(int i, ItemStack itemStack, Direction direction) {
+        return i == OUTPUT_SLOT;
+    }
+
+    @Override
+    public int getContainerSize() {
+        return NUMBER_OF_SLOTS;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this.itemHandler.getStackInSlot(INPUT_SLOT_LEFT).isEmpty() &&
+                this.itemHandler.getStackInSlot(INPUT_SLOT_CENTER).isEmpty() &&
+                this.itemHandler.getStackInSlot(INPUT_SLOT_RIGHT).isEmpty() &&
+                this.itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty();
+    }
+
+    @Override
+    public ItemStack getItem(int i) {
+        return this.itemHandler.getStackInSlot(i);
+    }
+
+    @Override
+    public ItemStack removeItem(int i, int count) {
+        return this.itemHandler.extractItem(i, count, false);
+    }
+
+    @Override
+    public ItemStack removeItemNoUpdate(int i) {
+        return this.itemHandler.extractItem(i, 1, true);
+    }
+
+    @Override
+    public void setItem(int i, ItemStack itemStack) {
+        this.itemHandler.setStackInSlot(i, itemStack);
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return false;
+    }
+
+    @Override
+    public void clearContent() {
+        this.itemHandler.setStackInSlot(INPUT_SLOT_LEFT, new ItemStack(Items.AIR));
+        this.itemHandler.setStackInSlot(INPUT_SLOT_CENTER, new ItemStack(Items.AIR));
+        this.itemHandler.setStackInSlot(INPUT_SLOT_RIGHT, new ItemStack(Items.AIR));
+        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(Items.AIR));
+    }
 }

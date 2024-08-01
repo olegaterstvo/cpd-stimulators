@@ -19,10 +19,10 @@ public class ModMenuTypes {
             DeferredRegister.create(BuiltInRegistries.MENU, CPDStimulators.MOD_ID);
 
     public static final DeferredHolder<MenuType<?>, MenuType<CentrifugeMenu>> CENTRIFUGE_MENU =
-            registermenuTypes("centrifuge_menu", CentrifugeMenu::new);
+            registerMenuTypes("centrifuge_menu", CentrifugeMenu::new);
 
 
-    private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registermenuTypes (String name, IContainerFactory<T> factory){
+    private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuTypes (String name, IContainerFactory<T> factory){
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));
     }
 
