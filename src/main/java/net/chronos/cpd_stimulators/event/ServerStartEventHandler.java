@@ -9,11 +9,6 @@ import java.util.concurrent.TimeUnit;
 import net.chronos.cpd_stimulators.block.ModBlocks;
 import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.item.ModItems;
-import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -44,6 +39,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 @EventBusSubscriber(modid = CPDStimulators.MOD_ID)
 public class ServerStartEventHandler {
 	private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+	public static BlockPos blockPos = null;
 
     @SubscribeEvent
     public static void onServerStarted(ServerStartedEvent event) {
@@ -100,8 +96,7 @@ public class ServerStartEventHandler {
 		int py = world.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, px, pz);
 		BlockPos pos = BlockPos.containing(Double.valueOf(px), Double.valueOf(py), Double.valueOf(pz));
 		world.setBlock(pos, Blocks.CHEST.defaultBlockState(), 3);
-//		world.addParticle(ParticleTypes.CLOUD, pos.getX(), pos.getY(), pos.getZ(), 0.0D, 0.0D, 0.0D);
-//		world.sendParticles(ParticleTypes.FLAME, pos.getX(), pos.getY(), pos.getZ(), 1000, 0, 0, 0, 0.0);
+		blockPos = pos;
 
 		CPDStimulators.LOGGER.info("AIRDROP at " + pos);
 
@@ -134,7 +129,7 @@ public class ServerStartEventHandler {
 		}
 
 		if (!world.isClientSide() && world.getServer() != null) {
-			world.getServer().getPlayerList().broadcastSystemMessage(Component.literal(px + " " + py + " " + pz), false);
+//			world.getServer().getPlayerList().broadcastSystemMessage(Component.literal(px + " " + py + " " + pz), false);
 			Component clickableCoords = Component.translatable("misc.cpd_stimulators.airdrop")
 				.append(Component.literal(" " + "[" + centerX + ", " + centerZ + "]")
 				.withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tp " + pos.getX() + " " + pos.getY() + " " + pos.getZ())).withColor(ChatFormatting.GREEN)))
