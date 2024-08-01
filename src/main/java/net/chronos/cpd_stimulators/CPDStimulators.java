@@ -5,6 +5,7 @@ import net.chronos.cpd_stimulators.block.entity.ModBlockEntities;
 import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.chronos.cpd_stimulators.entity.ModEntities;
+import net.chronos.cpd_stimulators.event.VersionEvents;
 import net.chronos.cpd_stimulators.item.ModItemGroup;
 import net.chronos.cpd_stimulators.item.ModItems;
 import net.chronos.cpd_stimulators.painting.ModPaintings;
@@ -39,5 +40,7 @@ public class CPDStimulators {
         ModMenuTypes.register(eventBus);
         ModRecipes.register(eventBus);
         ModPaintings.register(eventBus);
+
+        VersionEvents.init(modContainer);
     }
 }

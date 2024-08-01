@@ -57,6 +57,8 @@
   
 	"misc.cpd_stimulators.m": "m",
 	"misc.cpd_stimulators.s": "s",
+
+	"misc.cpd_stimulators.update_available": "A new version of CPD: Stimulators is available on ",
   
 	"entity.minecraft.villager.cpd_stimulators.therapist": "Therapist",
 	"entity.cpd_stimulators.sanitar": "Sanitar",
