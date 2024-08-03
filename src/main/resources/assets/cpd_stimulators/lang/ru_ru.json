@@ -59,6 +59,7 @@
   "misc.cpd_stimulators.s": "с",
 
   "misc.cpd_stimulators.update_available": "Новая версия CPD: Stimulators доступна на ",
+  "misc.cpd_stimulators.update_hover": "Нажмите, чтобы открыть ссылку",
 
   "entity.minecraft.villager.cpd_stimulators.therapist": "Терапевт",
   "entity.cpd_stimulators.sanitar": "Санитар",

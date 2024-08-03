@@ -4,6 +4,7 @@ import net.chronos.cpd_stimulators.CPDStimulators;
 import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.effect.ModEffects;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -197,5 +198,18 @@ public class PlayerEventHandler {
 
         event.getToolTip().add(Component.literal(""));
         event.getToolTip().addLast(Component.literal(weight));
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTick(PlayerTickEvent.Pre event) {
+        if (!event.getEntity().level().isClientSide()) return;
+        int[] pos = event.getEntity().getPersistentData().getIntArray("airdrop_pos");
+        if (pos.length == 0) return;
+        if (Math.random() > 0.5f) return;
+        event.getEntity().level().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                pos[0] + 0.5f,
+                pos[1] + 0.5f,
+                pos[2] + 0.5f,
+                0.03, 0.07, 0.02);
     }
 }

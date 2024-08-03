@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import net.chronos.cpd_stimulators.block.ModBlocks;
 import net.chronos.cpd_stimulators.config.ModServerConfigs;
 import net.chronos.cpd_stimulators.item.ModItems;
+import net.chronos.cpd_stimulators.network.AirdropPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -32,14 +33,13 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.chronos.cpd_stimulators.CPDStimulators;
 import net.minecraft.ChatFormatting;
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 @EventBusSubscriber(modid = CPDStimulators.MOD_ID)
 public class ServerStartEventHandler {
 	private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-	public static BlockPos blockPos = null;
 
     @SubscribeEvent
     public static void onServerStarted(ServerStartedEvent event) {
@@ -96,7 +96,9 @@ public class ServerStartEventHandler {
 		int py = world.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, px, pz);
 		BlockPos pos = BlockPos.containing(Double.valueOf(px), Double.valueOf(py), Double.valueOf(pz));
 		world.setBlock(pos, Blocks.CHEST.defaultBlockState(), 3);
-		blockPos = pos;
+
+		// Send airdrop pos to client
+		PacketDistributor.sendToAllPlayers(new AirdropPos(pos.getX(), pos.getY(), pos.getZ()));
 
 		CPDStimulators.LOGGER.info("AIRDROP at " + pos);
 

@@ -7,6 +7,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -33,7 +34,10 @@ public class VersionEvents {
                 if(!Objects.equals(jo.get("latest_release").getAsString(), (CPDStimulators.MOD_ID + "-" + modContainer.getModInfo().getVersion()))){
                     Component dlLink = Component.translatable("misc.cpd_stimulators.update_available")
                             .append(Component.literal("[GitHub]")
-                                    .withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/olegaterstvo/cpd-stimulators/releases")).withColor(ChatFormatting.BLUE)))
+                                    .withStyle(style -> style
+                                            .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/olegaterstvo/cpd-stimulators/releases"))
+                                            .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("misc.cpd_stimulators.update_hover")))
+                                            .withColor(ChatFormatting.BLUE)))
                             .append(Component.literal(" !"));
 
                     player.sendSystemMessage(dlLink);
