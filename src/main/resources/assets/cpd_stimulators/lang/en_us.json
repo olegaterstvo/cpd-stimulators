@@ -64,5 +64,7 @@
 	"entity.minecraft.villager.cpd_stimulators.therapist": "Therapist",
 	"entity.cpd_stimulators.sanitar": "Sanitar",
   
-	"itemGroup.cpd_stimulators": "CPD: Stimulators"
+	"itemGroup.cpd_stimulators": "CPD: Stimulators",
+
+	"emi.category.cpd_stimulators.centrifuge": "Centrifuge"
 }
