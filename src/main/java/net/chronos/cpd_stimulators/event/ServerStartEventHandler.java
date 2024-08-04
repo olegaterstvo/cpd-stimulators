@@ -91,7 +91,9 @@ public class ServerStartEventHandler {
 		int pz = centerZ + Mth.nextInt(RandomSource.create(), 1, ModServerConfigs.AIRDROP_WITHIN_RADIUS_OF_POINT.get());
 
 		// PRELOAD CHUNK
-		server.overworld().setChunkForced((int) (px / 16), (int) (pz / 16), true);
+//		server.overworld().setChunkForced((int) (px / 16), (int) (pz / 16), true);
+//		server.overworld().getChunkAt(new BlockPos(px, 64, pz)).runPostLoad();
+		server.overworld().getChunkAt(new BlockPos(px, 64, pz)).setLoaded(true);
 
 		int py = world.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, px, pz);
 		BlockPos pos = BlockPos.containing(Double.valueOf(px), Double.valueOf(py), Double.valueOf(pz));
@@ -140,5 +142,9 @@ public class ServerStartEventHandler {
 
 			server.getPlayerList().broadcastSystemMessage(clickableCoords, false);
 		}
+		server.overworld().getChunkAt(new BlockPos(px, 64, pz)).setLoaded(false);
+
 	}
+
+
 }
