@@ -161,6 +161,8 @@ public class PlayerEventHandler {
             }
         }
 
+        event.getEntity().getPersistentData().putFloat("current_weight", sum);
+
         event.getEntity().removeEffect(ModEffects.INSUPERABILITY);
         event.getEntity().removeEffect(ModEffects.OVERLOAD);
 
